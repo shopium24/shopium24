@@ -47,10 +47,11 @@ $this->registerJs("
             <?php if (Yii::$app->user->isGuest) { ?>
                 <a href="/users/register" class="btn btn-lg btn-success"><i class="icon-add"></i> Создать магазин</a>
             <?php } else { ?>
-                <div class="float-right header-contacts">
-                    <div><i class="icon-phone"></i>
-                        <span>+38 063 390 71 36</span><br/><span>+38 068 293 73 79</span></div>
-                    <div><i class="icon-envelope"></i> <span>support@<?= Yii::$app->params['domain']; ?></span>
+                <div class="float-right header-contacts text-right">
+                    <div class="phone">
+                        <i class="icon-phone"></i><span><?= Html::tel('+38 063 390 71 36');?></span>
+                    </div>
+                    <div class="email"><i class="icon-envelope"></i><span><?= Html::mailto('support@'.Yii::$app->params['domain']);?></span>
                     </div>
                 </div>
             <?php } ?>

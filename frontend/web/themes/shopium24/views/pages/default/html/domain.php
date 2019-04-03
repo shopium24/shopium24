@@ -5,6 +5,8 @@ use panix\engine\bootstrap\ActiveForm;
 use panix\engine\Html;
 use panix\ext\taginput\TagInput;
 
+$this->context->pageName = 'Проверка доменов';
+$this->context->breadcrumbs[] = $this->context->pageName;
 $this->registerJs("
 $(function () {
   $('[data-toggle=\"popover\"]').popover();
@@ -131,9 +133,21 @@ foreach ($apiZones->response->data as $data) {
                             } else {
                                 $checked = false;
                             }
-                            echo Html::checkbox('DomainCheckForm[domain][]', $checked, ['value' => $row->domain_name]);
+
                             ?>
-                            <b><?= $row->domain_name ?></b>
+
+                            <div class="custom-control custom-checkbox d-inline">
+                                <?= Html::checkbox('DomainCheckForm[domain][]', $checked, [
+                                    'value' => $row->domain_name,
+                                    'id' => $row->domain_name,
+                                    'class' => 'custom-control-input'
+                                ]); ?>
+                                <?= Html::label($row->domain_name, $row->domain_name, ['class' => 'custom-control-label']); ?>
+
+                            </div>
+
+
+                            <b></b>
                             <?php if ($row->is_action) { ?>
                                 <i class="icon-discount text-info"
                                    data-toggle="popover"

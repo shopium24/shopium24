@@ -74,22 +74,24 @@ blockquote {
 }
 
 .breadcrumb {
-  margin-top: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
   background-color: transparent;
   margin-left: 10px;
   position: relative;
   font-size: 13px;
+  &:before{
+    font-family: $font-family-icon;
+    content: "\f026";
+    position: absolute;
+    left: -5px;
+    top: 13px;
+    color: #e12f6e;
+    font-size: 13px;
+  }
 }
 
-.breadcrumb:before {
-  font-family: $font-family-icon;
-  content: "\f026";
-  position: absolute;
-  left: -5px;
-  top: 13px;
-  color: #e12f6e;
-  font-size: 13px;
-}
+
 
 p {
   line-height: 22px;
@@ -108,23 +110,6 @@ p {
 
 h3 {
   font-weight: normal;
-}
-
-.header-contacts {
-  div {
-    margin: 5px 0;
-  }
-  span {
-    color: #585858;
-    font-size: 13px;
-    margin-left: 10px;
-  }
-}
-
-.header-contacts
-.header-contacts .icon {
-  color: #e12f6e;
-  font-size: 14px;
 }
 
 .made-in-ukraine {
@@ -226,7 +211,6 @@ h3 {
   }
 }
 
-
 .navbar-nav > li .menu-label.new-menu {
   background: #f1c40f;
 }
@@ -295,9 +279,6 @@ h3 {
 }
 
 .btn {
-  border: 0;
-  outline: none;
-  margin: 0;
   @extend .box-shadow-none;
   .btn-block:active,
   .btn-lg:active {
@@ -307,14 +288,44 @@ h3 {
   }
 }
 
+.phone {
+  font-size: 23px;
+  a {
+    font-size: 23px;
+
+  }
+}
+
+.header-contacts {
+  color: #292d32;
+  a{
+    color: #292d32;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  div {
+    margin: 5px 0;
+  }
+  span {
+    color: #585858;
+    font-size: 13px;
+    margin-left: 10px;
+  }
+}
+
+.header-contacts
+.header-contacts .icon {
+  color: #e12f6e;
+  font-size: 14px;
+}
+
 @each $name, $color in $colors {
   .btn-#{$name} {
-    border-bottom: 4px solid darken($color, 10%);
     &:hover,
     &:focus,
     &:active {
       @extend .box-shadow-none;
-      border-bottom: 4px solid darken($color, 15%);
     }
   }
 
