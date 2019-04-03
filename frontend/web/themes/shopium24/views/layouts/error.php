@@ -1,37 +1,41 @@
-<?php $this->renderPartial('//layouts/partials/_cs'); ?>
+<?php
+
+use panix\engine\Html;
+use panix\engine\widgets\Breadcrumbs;
+
+\app\frontend\web\themes\shopium24\assets\ThemeAsset::register($this);
+\panix\engine\assets\ErrorAsset::register($this);
+?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::app()->language ?>">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <?php if (Yii::app()->hasModule('seo')) { ?>
-            <?php Yii::app()->seo->run(); ?>
-        <?php } else { ?>
-            <title><?= Html::encode($this->pageTitle) ?></title>
+<html lang="<?= Yii::$app->language ?>">
+<head>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <?= Html::csrfMetaTags() ?>
+    <?php $this->head() ?>
+</head>
+<body>
+<?php $this->beginBody() ?>
+<div class="wrap page-error">
+    <?= $this->render('partials/header'); ?>
+    <div class="container">
+        <?php if (isset($this->context->breadcrumbs)) { ?>
+            <?php
+            echo Breadcrumbs::widget([
+                'links' => $this->context->breadcrumbs,
+            ]);
+            ?>
         <?php } ?>
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-        <meta name="robots" content="all">
-    </head>
 
-    <body>
+
         <?php
-        $this->widget('ext.admin.sitePanel.PanelWidget');
+        echo $content;
         ?>
-        <?php $this->renderPartial('//layouts/partials/header'); ?>
-        <script>
-            $(function () {
-                $('.carousel').carousel({
-                    interval: 12000
-                });
-            });
-        </script>
-
-        <div class="container page-error" style="padding-bottom: 100px;padding-top: 100px">
-            <div class="row">
-                <?= $content ?>
-            </div>
-        </div>
-
-        <?php $this->renderPartial('//layouts/partials/footer'); ?>
-    </body>
+    </div>
+</div>
+<?= $this->render('partials/footer'); ?>
+<?php $this->endBody() ?>
+</body>
 </html>
-
+<?php $this->endPage() ?>

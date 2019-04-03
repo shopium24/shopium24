@@ -45,6 +45,7 @@ $config = [
         ],
         'admin' => ['class' => 'panix\mod\admin\Module'],
         'user' => ['class' => 'panix\mod\user\Module'],
+        'plans' => ['class' => 'shopium24\mod\plans\Module'],
         //'stats' => ['class' => 'panix\mod\stats\Module'],
         //'hosting' => ['class' => 'app\modules\hosting\Module'],
         /* 'seo' => ['class' => 'app\modules\seo\Module'],

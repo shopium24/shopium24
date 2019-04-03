@@ -31,7 +31,7 @@ return [
         //'exchange1c' => ['class' => 'panix\mod\exchange1c\Module'],
         //'user' => ['class' => 'panix\mod\user\Module'],
         //'wishlist' => ['class' => 'panix\mod\wishlist\Module'],
-        //'admin' => ['class' => 'panix\mod\admin\Module'],
+        'plans' => ['class' => 'shopium24\mod\plans\Module'],
     ],
     'controllerMap' => [
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\frontend\web\themes\basic\assets;
+namespace app\frontend\web\themes\shopium24\assets;
 
 use panix\engine\web\AssetBundle;
 
@@ -16,18 +16,14 @@ class ThemeAsset extends AssetBundle {
 
 
     public $css = [
-        'css/app.css',
-        'css/style.css',
-        //'css/shop.css'
+        'css/plan.css',
+        'css/theme.css',
     ];
 
     public $depends = [
         'panix\engine\assets\JqueryCookieAsset',
         'panix\engine\assets\CommonAsset',
-        'panix\mod\shop\assets\WebAsset',
         'panix\mod\comments\assets\WebAsset',
-        'panix\mod\cart\assets\CartAsset',
-        'panix\mod\wishlist\assets\WishlistAsset',
     ];
 
 }

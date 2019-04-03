@@ -1,4 +1,8 @@
-
+<?php
+use panix\engine\Html;
+use shopium24\mod\plans\models\Plans;
+use shopium24\mod\plans\models\PlansOptionsGroups;
+?>
 <script>
     $(function () {
         $('.hint_popup').popover({trigger: "hover", html: true});
@@ -10,10 +14,10 @@
 
 </script>
 <?php
-Yii::import('mod.plans.models.*');
-$this->pageName = 'Тарифы и цены';
-$plans = Plans::model()->findAll();
-$groups = PlansOptionsGroups::model()->findAll();
+
+$this->context->pageName = 'Тарифы и цены';
+$plans = Plans::find()->all();
+$groups = PlansOptionsGroups::find()->all();
 ?>
 
 <h1>15 минут</h1>
@@ -40,7 +44,7 @@ $groups = PlansOptionsGroups::model()->findAll();
                         }
                         if ($plan->name == 'Standard') {
                             $htlp = 'header-plan-inner';
-                            $recommendHtml = '<span class="recommended-plan-ribbon">поплулярный</span>';
+                            $recommendHtml = '<span class="recommended-plan-ribbon">популярный</span>';
                         } else {
                             $recommendHtml = '';
                             $htlp = '';
@@ -64,7 +68,7 @@ $groups = PlansOptionsGroups::model()->findAll();
                     <th class="plan-header plan-header-standard" style="display:none">
                         <div class="header-plan-inner">
                             <!--<span class="plan-head"> </span>-->
-                            <span class="recommended-plan-ribbon">поплулярный</span>
+                            <span class="recommended-plan-ribbon">популярный</span>
                             <div class="pricing-plan-name">Standard</div>
                             <div class="pricing-plan-price">
                                 300<span>грн.</span>
@@ -109,7 +113,7 @@ $groups = PlansOptionsGroups::model()->findAll();
 
                 <tr>
                     <td>
-                        <?php if (Yii::app()->user->isGuest) { ?>
+                        <?php if (Yii::$app->user->isGuest) { ?>
                             <b>Бесплатно 14 дней</b>
                         <?php } ?>
                     </td>
@@ -117,19 +121,19 @@ $groups = PlansOptionsGroups::model()->findAll();
                         <?php
                         $btnClass = ($plan->name == 'Standard') ? 'btn-warning' : 'btn-info';
                         ?>
-                        <?php if (Yii::app()->user->isGuest) { ?>
-                            <td class="action-header"><?= Html::link('Попробовать', array('/users/register', 'User[plan]' => $plan->name), array('class' => 'btn ' . $btnClass)) ?></td>
+                        <?php if (Yii::$app->user->isGuest) { ?>
+                            <td class="action-header"><?= Html::a('Попробовать', array('/users/register', 'User[plan]' => $plan->name), array('class' => 'btn ' . $btnClass)) ?></td>
                         <?php } else { ?>
-                            <?php if ($plan->name == Yii::app()->user->plan) { ?>
-                                <td class="action-header">
+                            <?php //if ($plan->name == Yii::$app->user->plan) { ?>
+                                <!--<td class="action-header">
                                     <div class="current-plan">
                                         <div class="with-date text-success">Текущий тариф</div>
                                         <div><em class="smaller block"><i class="icon-check text-success"></i></em></div>
                                     </div> 
-                                </td>
-                            <?php } else { ?>
-                                <td class="action-header"><?= Html::link('Перейти', array('/users/replan', 'User[plan]' => $plan->name), array('class' => 'btn ' . $btnClass)) ?></td>
-                            <?php } ?>
+                                </td>-->
+                            <?php //} else { ?>
+                                <td class="action-header"><?= Html::a('Перейти', array('/users/replan', 'User[plan]' => $plan->name), array('class' => 'btn ' . $btnClass)) ?></td>
+                            <?php //} ?>
 
                         <?php } ?>
 
@@ -170,11 +174,11 @@ $groups = PlansOptionsGroups::model()->findAll();
                 <?php } ?>
 
 
-                <?php if (Yii::app()->user->isGuest) { ?>
+                <?php if (Yii::$app->user->isGuest) { ?>
                     <tr>
                         <td><b>Бесплатно 14 дней</b></td>
                         <?php foreach ($plans as $plan) { ?>
-                            <td class="text-center"><?= Html::link('Попробовать', array('/users/register', 'User[plan]' => $plan->name), array('class' => 'btn btn-info')) ?> </td>
+                            <td class="text-center"><?= Html::a('Попробовать', array('/users/register', 'User[plan]' => $plan->name), array('class' => 'btn btn-info')) ?> </td>
                         <?php } ?>
                     </tr> 
                 <?php } ?>
