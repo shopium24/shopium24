@@ -21,7 +21,7 @@ use panix\engine\CMS;
         <tr>
             <td class="text-center"><?= $data->id; ?></td>
             <td><?= Html::a($data->login,['/admin/hosting/hostingaccount/info','account'=>$data->login]); ?></td>
-            <td class="text-center"><span class="label label-default"><?= $data->valid_untill; ?></span></td>
+            <td class="text-center"><span class="badge badge-secondary"><?= $data->valid_untill; ?></span></td>
             <td>
                 <div>Тариф: <?= $data->plan->name; ?> (<?= $data->plan->id; ?>)</div>
                 <div>1 мес. <?= $data->plan->price->{1} ?> <?= $data->plan->currency; ?></div>
@@ -31,7 +31,7 @@ use panix\engine\CMS;
                 <div>2 года. <?= $data->plan->price->{24} ?> <?= $data->plan->currency; ?></div>
                 <br>
 
-                <div><b>Место на SSD диске:</b> <?= CMS::files_size($data->plan->quota->disc * 1024 * 1024); ?></div>
+                <div><b>Место на SSD диске:</b> <?= CMS::filesize($data->plan->quota->disc * 1024 * 1024); ?></div>
                 <div><b>inode</b> <?= $data->plan->quota->inode; ?></div>
                 <div><b>Сайтов</b> <?= ($data->plan->quota->sites != 999) ? $data->plan->quota->sites : 'неограниченно'; ?></div>
                 <div><b>php_memory_limit</b> <?= $data->plan->quota->php_memory_limit; ?> MB</div>
@@ -49,13 +49,13 @@ use panix\engine\CMS;
                 <div>ipv6:  <?= $data->proxy->ipv6 ?></div>
             </td>
             <td>
-                <div>Место на диске FTP/Mysql:  <?= CMS::files_size($data->usage->disc * 1024 * 1024) ?></div>
+                <div>Место на диске FTP/Mysql:  <?= CMS::filesize($data->usage->disc * 1024 * 1024) ?></div>
                 <div>inode:  <?= $data->usage->inode ?></div>
                 <div>Сайтов:  <?= $data->usage->sites ?></div>
             </td>
             <td>
                 <?php foreach ($data->extra as $ext) { ?>
-                    <span class="label label-success"><?= $ext ?></span>
+                    <span class="badge badge-success"><?= $ext ?></span>
                 <?php } ?>
 
 

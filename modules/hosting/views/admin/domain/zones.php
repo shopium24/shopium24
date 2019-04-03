@@ -31,26 +31,20 @@ use panix\ext\taginput\TagInput;
 $form = ActiveForm::begin();
 ?>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Проверка доменов</h3>
+<div class="card bg-light">
+    <div class="card-header">
+        <h5>Проверка доменов</h5>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <?=
                 $form->field($model, 'name')
-                ->widget(TagInput::className(), ['placeholder' => 'E-mail'])
-                ->hint('Введите E-mail и нажмите Enter');
+                ->widget(TagInput::class, ['placeholder' => 'Домен'])
+                ->hint('Введите название домена и нажмите Enter');
         ?>
 
         <div class="form-group text-center">
             <?= Html::submitButton(Yii::t('app', 'Проверить'), ['class' => 'btn btn-success']) ?>
         </div>
-
-
-
-
-
-
 
 
 
@@ -81,10 +75,10 @@ $form = ActiveForm::begin();
 
 
                             </td>
-                            <td class="text-center"><?php echo $result[0]->available ? '<span class="label label-success">свободен</span>' : '<span class="label label-danger">занят</span>'; ?></td>
+                            <td class="text-center"><?php echo $result[0]->available ? '<span class="badge badge-success">свободен</span>' : '<span class="badge badge-danger">занят</span>'; ?></td>
                             <td class="text-center">
                                 <?php echo (isset($result[0]->reason)) ? '<span class="text-danger">' . $result[0]->reason . '<span>' : '---'; ?></td>
-                            <td class="text-center"><?php echo $this->context->getReasonCode($result[0]); ?></td>
+                            <td class="text-center"><?php echo \app\modules\hosting\components\Api::reasonCode($result[0]); ?></td>
                         </tr>
                     <?php } ?>
                 </table>
@@ -94,11 +88,11 @@ $form = ActiveForm::begin();
 </div>
 
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?= $this->context->pageName ?></h3>
+<div class="card bg-light">
+    <div class="card-header">
+        <h5><?= $this->context->pageName ?></h5>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
 
         <table class="table table-bordered">
             <?php foreach ($array as $key => $items) { ?>

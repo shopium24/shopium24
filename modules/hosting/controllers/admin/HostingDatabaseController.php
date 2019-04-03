@@ -9,7 +9,7 @@ use app\modules\hosting\forms\hosting_database\DatabaseCreateForm;
 use app\modules\hosting\forms\hosting_database\UserPasswordForm;
 use app\modules\hosting\forms\hosting_database\UserPrivilegesForm;
 
-class HostingdatabaseController extends CommonController {
+class HostingDatabaseController extends CommonController {
 
     public function actionIndex() {
         return $this->render('index');

@@ -1,7 +1,6 @@
 <?php
 use panix\engine\Html;
-?>
-<script>
+$this->registerJs("
     $(document).ready(function () {
         $('.navbar-brand span').hover(function (e) {
             e.preventDefault();
@@ -10,7 +9,8 @@ use panix\engine\Html;
             $(this).addClass('swing');
         });
     });
-</script>
+",\yii\web\View::POS_END);
+?>
 <nav class="navbar navbar-expand-lg fixed-top bg-white">
     <div class="container">
 
@@ -27,12 +27,12 @@ use panix\engine\Html;
         <div id="navbar" class="navbar-collapse collapse">
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a href="/html/plans" class="nav-link">Цены</a></li>
+                <li class="nav-item"><a href="/page/plans" class="nav-link">Цены</a></li>
                 <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" href="#" id="drop-service"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Услуги
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="drop-service">
-                        <li class="dropdown-item"><?= Html::a('Регистрация доменов', array('/html/domain')) ?></li>
+                        <li class="dropdown-item"><?= Html::a('Регистрация доменов', array('/page/domain')) ?></li>
                     </ul>
                 </li>
                 <li class="nav-item" style="display:none;"><a href="#" class="nav-link">Выкуп магазина</a></li>

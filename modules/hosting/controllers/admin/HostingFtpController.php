@@ -9,7 +9,7 @@ use app\modules\hosting\forms\hosting_ftp\AccountForm;
 use app\modules\hosting\forms\hosting_ftp\CreateFtpForm;
 use app\modules\hosting\forms\hosting_ftp\AccessEditForm;
 
-class HostingftpController extends CommonController {
+class HostingFtpController extends CommonController {
 
 
 

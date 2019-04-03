@@ -13,7 +13,7 @@ class CommonController extends \panix\engine\controllers\AdminController {
         $controller = basename($this->id);
         $action = $this->action->id;
         $actionName = str_replace('-','_',strtoupper($action));
-        $controllerName = strtoupper($controller);
+        $controllerName = str_replace('-','_',strtoupper($controller));
         if ($controller == 'default') {
             if ($controller == 'default' && $action == 'index') {
                 $bc[] = $this->pageName;

@@ -6,7 +6,7 @@ use Yii;
 use app\modules\hosting\components\Api;
 use yii\base\Exception;
 
-class HostinglogController extends CommonController {
+class HostingLogController extends CommonController {
 
     public function actionIndex() {
 

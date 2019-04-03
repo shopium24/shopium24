@@ -19,7 +19,7 @@ class DomainController extends CommonController {
 
     public function actionCheck() {
         //  $api = new Api('dns_domain', 'check',['stack'=>['corner-cms.com']]);
-        $domainList = array();
+        $domainList = [];
         $apiZones = new Api('dns_domain', 'zones', ['available' => 1]);
         //  echo $apiZones->response->data;
 
@@ -32,7 +32,7 @@ class DomainController extends CommonController {
             );
         }
 
-        $selectOptions = array();
+        $selectOptions = [];
         foreach ($domainList as $key => $items) {
             //usort($items, 'sorting');
             $i = 0;
@@ -110,14 +110,5 @@ class DomainController extends CommonController {
         ]);
     }
 
-    public function getReasonCode($data) {
-        if ($data->reason_code == 'already_served') {
-            return 'Доменное имя уже обслуживается';
-        } elseif ($data->reason_code == 'object_exists') {
-            return 'object_exists';
-        } else {
-            return '---';
-        }
-    }
 
 }

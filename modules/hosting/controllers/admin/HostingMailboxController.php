@@ -7,30 +7,21 @@ use app\modules\hosting\components\Api;
 use app\modules\hosting\forms\hosting_mailbox\MailCreateForm;
 use yii\base\Exception;
 
-class HostingmailboxController extends CommonController {
+class HostingMailboxController extends CommonController {
 
     public function actionIndex() {
         $this->buttons[] = [
             'label' => Yii::t('hosting/default', 'BTN_MAILBOX_CREATE'),
-            'url' => ['create']
+            'url' => ['admin/hosting/hosting-mailbox/create']
         ];
-        return $this->render('index');
-    }
-
-    public function actionInfo() {
-
-        $this->buttons[] = [
-            'label' => Yii::t('hosting/default', 'BTN_MAILBOX_CREATE'),
-            'url' => ['create']
-        ];
-
         $api = new Api('hosting_mailbox', 'info');
         if ($api->response->status == 'success') {
-            return $this->render('info', ['response' => $api->response->data]);
+            return $this->render('index', ['response' => $api->response->data]);
         } else {
             throw new Exception($api->response->message);
         }
     }
+
 
     public function actionCreate() {
         $model = new MailCreateForm();

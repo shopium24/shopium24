@@ -1,1 +1,1 @@
-<?php $this->renderPartial('current_theme.views.layouts.partials._plan_table'); ?>
+<?php echo $this->render('@theme/views/layouts/partials/_plan_table'); ?>

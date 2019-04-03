@@ -21,7 +21,7 @@ use panix\engine\CMS;
             <td><?= $data->name; ?> (<?= $data->name_billing; ?>)</td>
             <td>
 
-                <div><b>Место на SSD диске:</b> <?= CMS::files_size($data->quota->disc * 1024 * 1024); ?></div>
+                <div><b>Место на SSD диске:</b> <?= CMS::filesize($data->quota->disc * 1024 * 1024); ?></div>
                 <div><b>inode</b> <?= $data->quota->inode; ?></div>
                 <div><b>Сайтов</b> <?= ($data->quota->sites != 999) ? $data->quota->sites : 'неограниченно'; ?></div>
                 <div><b>php_memory_limit</b> <?= $data->quota->php_memory_limit; ?> MB</div>

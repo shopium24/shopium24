@@ -7,7 +7,7 @@ use yii\base\Exception;
 use app\modules\hosting\components\Api;
 
 
-class HostingaccountController extends CommonController {
+class HostingAccountController extends CommonController {
 
     public function actionIndex() {
         return $this->render('index');

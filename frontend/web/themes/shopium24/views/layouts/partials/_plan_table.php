@@ -3,18 +3,14 @@ use panix\engine\Html;
 use shopium24\mod\plans\models\Plans;
 use shopium24\mod\plans\models\PlansOptionsGroups;
 ?>
-<script>
-    $(function () {
-        $('.hint_popup').popover({trigger: "hover", html: true});
-    });
 
-    $(document).ready(function () {
-        new WOW().init();
-    });
-
-</script>
 <?php
+$this->registerJs("
+    $(function () {
+        $('.hint_popup').popover({trigger: \"hover\", html: true});
+    });
 
+",\yii\web\View::POS_END);
 $this->context->pageName = 'Тарифы и цены';
 $plans = Plans::find()->all();
 $groups = PlansOptionsGroups::find()->all();
@@ -56,7 +52,7 @@ $groups = PlansOptionsGroups::find()->all();
                                 <div class="pricing-plan-name"><?= $plan->name ?></div>
                                 <div class="pricing-plan-price">
 
-                                    <?= $plan->price_month ?><span>грн.</span>
+                                    <?= number_format($plan->price_month,0,'','') ?><span>грн.</span>
                                 </div>
                                 <div class="pricing-plan-period">месяц</div>
                             </div>
@@ -90,16 +86,16 @@ $groups = PlansOptionsGroups::find()->all();
                     <td>При оплате за пол года:</td>
                     <?php for ($x = 0; $x < 3; $x++) { ?>
                         <td  class="text-center">
-                        <?= $plans[$x]->price_6month ?> грн/мес.
-                        <small style="display:block;font-style: italic;color:#777;">(экономия <?= ($plans[$x]->price_month * 6) - $plans[$x]->price_6month * 6;?> грн.)</small>
+                        <?= number_format($plans[$x]->price_6month,0,'','') ?> грн/мес.
+                        <small style="display:block;font-style: italic;color:#777;">(экономия <?= number_format(($plans[$x]->price_month * 6) - $plans[$x]->price_6month * 6,0,'','');?> грн.)</small>
                         </td>
                     <?php } ?>
                 </tr>
                 <tr>
                     <td>При оплате за год:</td>
                     <?php for ($x = 0; $x < 3; $x++) { ?>
-                        <td class="text-center"><?= $plans[$x]->price_year ?> грн/мес.
-                        <small style="display:block;font-style: italic;color:#777;">(экономия <?= ($plans[$x]->price_month * 12) - $plans[$x]->price_year * 12;?> грн.)</small>
+                        <td class="text-center"><?= number_format($plans[$x]->price_year,0,'','') ?> грн/мес.
+                        <small style="display:block;font-style: italic;color:#777;">(экономия <?= number_format(($plans[$x]->price_month * 12) - $plans[$x]->price_year * 12,0,'','');?> грн.)</small>
                         </td>
                     <?php } ?>
                 </tr>

@@ -13,7 +13,7 @@ $form = ActiveForm::begin();
 
 <?=
         $form->field($model, 'name')
-        ->widget(TagInput::className(), ['placeholder' => 'E-mail'])
+        ->widget(TagInput::class, ['placeholder' => 'E-mail'])
         ->hint('Введите E-mail и нажмите Enter');
 ?>
 
@@ -31,7 +31,7 @@ $form = ActiveForm::begin();
 
 
 		<?php if ($checkData) { ?>
-			<div class="col-sm-12">
+			<div class="col-md-12">
 				<div class="table-responsive">
 					<table class="table table-bordered table-striped">
 						<tr>
@@ -43,7 +43,7 @@ $form = ActiveForm::begin();
 						<?php foreach ($checkData as $d => $result) { ?>
 							<tr>
 								<td><?= $d ?></td>
-								<td class="text-center"><?php echo $result[0]->available ? '<span class="label label-success">доступен</span>' : '<span class="label label-danger">не доступен</span>'; ?></td>
+								<td class="text-center"><?php echo $result[0]->available ? '<span class="badge badge-success">доступен</span>' : '<span class="badge badge-secondary">не доступен</span>'; ?></td>
 								<td class="text-center"><?php echo (isset($result[0]->reason)) ? '<span class="text-danger">' . $result[0]->reason . '<span>' : '---'; ?></td>
 								<td class="text-center"><?php echo $this->context->getReasonCode($result[0]); ?></td>
 								</tr>

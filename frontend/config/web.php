@@ -54,9 +54,9 @@ $config = [
             ],
         ],
         'admin' => ['class' => 'panix\mod\admin\Module'],
-        'user' => ['class' => 'panix\mod\user\Module'],
+        'user' => ['class' => 'shopium24\mod\user\Module'],
         'plans' => ['class' => 'shopium24\mod\plans\Module'],
-
+        'hosting' => ['class' => 'app\modules\hosting\Module'],
     ],
     'components' => [
         'plugins' => [
@@ -276,7 +276,7 @@ $config = [
 
         ],
         'user' => [
-            'class' => 'panix\mod\user\components\WebUser',
+            'class' => 'shopium24\mod\user\components\WebUser',
             //'enableAutoLogin' => true,
             //'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],

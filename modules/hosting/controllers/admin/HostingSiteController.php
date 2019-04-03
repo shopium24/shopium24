@@ -7,7 +7,7 @@ use yii\base\Exception;
 use app\modules\hosting\components\Api;
 use app\modules\hosting\forms\hosting_site\HostCreateForm;
 
-class HostingsiteController extends CommonController {
+class HostingSiteController extends CommonController {
 
     public function actionIndex() {
         return $this->render('index');

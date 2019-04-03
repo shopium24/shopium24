@@ -5,7 +5,7 @@ namespace app\modules\hosting\controllers\admin;
 use app\modules\hosting\components\Api;
 use yii\base\Exception;
 
-class HostingquotaController extends CommonController {
+class HostingQuotaController extends CommonController {
 
     public function actionIndex() {
         return $this->render('index');

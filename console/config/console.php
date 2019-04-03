@@ -29,7 +29,7 @@ return [
         //'cart' => ['class' => 'panix\mod\cart\Module'],
         //'pages' => ['class' => 'panix\mod\pages\Module'],
         //'exchange1c' => ['class' => 'panix\mod\exchange1c\Module'],
-        //'user' => ['class' => 'panix\mod\user\Module'],
+        'user' => ['class' => 'shopium24\mod\user\Module'],
         //'wishlist' => ['class' => 'panix\mod\wishlist\Module'],
         'plans' => ['class' => 'shopium24\mod\plans\Module'],
     ],
