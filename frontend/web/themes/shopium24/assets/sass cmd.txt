@@ -1,0 +1,16 @@
+sass --watch dark.scss:dark.css --style expanded
+
+cd /d d:/ospane/.etc.
+sass --watch scss:css --style expanded
+
+
+//проверить
+sass --watch dark.scss:dark.css --style expanded dark.scss:dark.min.css --style compressed
+
+
+
+style:
+nested
+compact
+expanded
+compressed
