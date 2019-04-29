@@ -2,39 +2,29 @@
 
 use panix\engine\pdf\Pdf;
 
-//Yii::setAlias('@runtime', '@webroot/web/runtime');
-//Yii::setAlias('@frontend', dirname(__DIR__) . '/web');
-Yii::setAlias('@backend', dirname(__DIR__) . '/../backend/web');
-Yii::setAlias('@frontend', dirname(__DIR__) . '/../frontend/web');
 Yii::setAlias('@console', dirname(__DIR__) . '/../console/web');
 
-
-
-$db = YII_DEBUG ? dirname(__DIR__) . '/../common/config/db_local.php' : dirname(__DIR__) . '/../common/config/db.php';
 $config = [
-    //'homeUrl' => '/',
-    'id' => 'frontend',
+    'id' => 'app',
     'name' => 'PIXELION CMS',
-    'basePath' => dirname(__DIR__).'/../', //if in web dir
-    //'basePath' => dirname(__DIR__),
+    'homeUrl' => '/',
     'language' => 'ru',
-    'aliases' => [
-        '@bower' => '@vendor/bower-asset',
-        '@npm' => '@vendor/npm-asset',
-    ],
-    //'sourceLanguage'=>'ru',
-    'runtimePath' => '@app/frontend/runtime',
+    'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'panix\engine\controllers',
     'defaultRoute' => 'main/main',
     'bootstrap' => [
         'log',
-        'plugins',
         'maintenanceMode',
-        'panix\engine\BootstrapModule',
-        'panix\engine\plugins\goaway\GoAway'
-    ], //'webcontrol',
+        'panix\engine\BootstrapModule'
+    ],
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm' => '@vendor/npm-asset',
+        '@uploads' => '@app/web/uploads',
+    ],
     'controllerMap' => [
         'main' => 'panix\engine\controllers\WebController',
+        'backend' => 'panix\engine\controllers\AdminController',
     ],
     'modules' => [
         'plugins' => [
@@ -45,16 +35,16 @@ $config = [
             ]
         ],
         'sitemap' => [
-            'class' => 'app\modules\sitemap\Module',
+            'class' => 'panix\mod\sitemap\Module',
         ],
         'rbac' => [
             'class' => 'panix\mod\rbac\Module',
-            'as access' => [
-                'class' => panix\mod\rbac\filters\AccessControl::class
-            ],
+            //'as access' => [
+            //    'class' => panix\mod\rbac\filters\AccessControl::class
+            //],
         ],
         'admin' => ['class' => 'panix\mod\admin\Module'],
-        'user' => ['class' => 'shopium24\mod\user\Module'],
+        'user' => ['class' => 'panix\mod\user\Module'],
         'plans' => ['class' => 'shopium24\mod\plans\Module'],
         'hosting' => ['class' => 'app\modules\hosting\Module'],
     ],
@@ -77,23 +67,10 @@ $config = [
             'siteKey' => '6LfJqpYUAAAAAMKYmNUctjXeTkQrx74R2LHaM0r7',
             'secret' => '6LfJqpYUAAAAAGOItZcYABLTjDilBvgaAJE7vJL0',
         ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['guest', 'user'],
-        ],
-        'sphinx' => [
-            'class' => 'yii\sphinx\Connection',
-            'dsn' => 'mysql:host=127.0.0.1;port=9306;',
-            'username' => '',
-            'password' => '',
-        ],
         'img' => [
             'class' => 'panix\engine\components\ImageHandler',
         ],
-        'fcm' => [
-            'class' => 'understeam\fcm\Client',
-            'apiKey' => 'AIzaSyAbeTCpxK7OGu_lXZDSnJjV1ItkUwPOBbc', // Server API Key (you can get it here: https://firebase.google.com/docs/server/setup#prerequisites)
-        ],
+
         'robotsTxt' => [
             'class' => 'app\modules\sitemap\RobotsTxt',
             'userAgent' => [
@@ -136,7 +113,7 @@ $config = [
                             'dataClosure' => function ($model) {
                                 /** @var self $model */
                                 return [
-                                    'loc' => Url::to($model->url, true),
+                                    'loc' => \yii\helpers\Url::to($model->url, true),
                                     'lastmod' => strtotime($model->lastmod),
                                     'changefreq' => \app\modules\sitemap\Sitemap::DAILY,
                                     'priority' => 0.8
@@ -179,38 +156,26 @@ $config = [
             'cacheExpire' => 1, // 1 second. Default is 24 hours,
             'sortByPriority' => true, // default is false
         ],
-
-
-        'stats' => ['class' => 'panix\mod\stats\components\Stats'],
-        'curl' => ['class' => 'panix\engine\Curl'],
-        'consoleRunner' => [
-            'class' => 'panix\engine\components\ConsoleRunner',
-            'file' => '@my/path/to/yii' // or an absolute path to console file
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest', 'user'],
         ],
-        'seo' => ['class' => 'app\modules\seo\components\SeoExt'],
-        'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
-        'webcontrol' => ['class' => 'panix\engine\widgets\webcontrol\WebInlineControl'],
-        'pdf' => [
-            'class' => Pdf::class,
-            'format' => Pdf::FORMAT_A4,
-            'orientation' => Pdf::ORIENT_PORTRAIT,
-            'destination' => Pdf::DEST_BROWSER,
-            'mode' => Pdf::MODE_UTF8,
+        'sphinx' => [
+            'class' => 'yii\sphinx\Connection',
+            'dsn' => 'mysql:host=127.0.0.1;port=9306;',
+            'username' => '',
+            'password' => '',
+        ],
+        'fcm' => [
+            'class' => 'understeam\fcm\Client',
+            'apiKey' => 'AIzaSyAbeTCpxK7OGu_lXZDSnJjV1ItkUwPOBbc', // Server API Key (you can get it here: https://firebase.google.com/docs/server/setup#prerequisites)
         ],
         'formatter' => [
             'class' => 'panix\engine\i18n\Formatter'
         ],
-        'maintenanceMode' => [
-            'class' => 'panix\engine\maintenance\MaintenanceMode',
-            // Allowed roles
-            //'roles' => [
-            //    'admin',
-            //],
-            //Retry-After header
-            // 'retryAfter' => 120 //or Wed, 21 Oct 2015 07:28:00 GMT for example
-        ],
         'assetManager' => [
             'forceCopy' => YII_DEBUG,
+            // 'basePath'=>'@webroot/web/assets',
             'bundles' => [
                 //'yii\jui\JuiAsset' => ['css' => []],
                 'yii\jui\JuiAsset' => [
@@ -229,21 +194,7 @@ $config = [
             //'linkAssets' => true,
             'appendTimestamp' => true
         ],
-        'view' => [
-            // 'class' => 'panix\engine\View',
-            'class' => panix\mod\plugins\components\View::class,
-            'as Layout' => [
-                'class' => \panix\engine\behaviors\LayoutBehavior::class,
-            ],
 
-            /*'renderers' => [
-                'tpl' => [
-                    'class' => 'yii\smarty\ViewRenderer',
-                    'cachePath' => '@runtime/Smarty/cache',
-                ],
-            ],*/
-            'theme' => ['class' => 'panix\engine\base\Theme'],
-        ],
         'i18n' => [
             'translations' => [
                 'app*' => [
@@ -262,59 +213,28 @@ $config = [
         ],
         'session' => [
             'class' => '\panix\engine\web\DbSession',
-            'timeout'=>1440
+            'timeout' => 1440
+            //'class' => '\yii\web\DbSession',
+            //'writeCallback'=>['panix\engine\web\DbSession', 'writeFields']
         ],
         'request' => [
             'class' => 'panix\engine\WebRequest',
-            'baseUrl' => '',
-            // 'csrfParam' => '_csrf-frontend',
+            //'baseUrl' => '/admin',
+            //'csrfParam' => '_csrf-backend',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'fpsiKaSs1Mcb6zwlsUZwuhqScBs5UgPQ',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache', //DummyCache
-
+            // 'cachePath' => '@common/runtime/cache'
         ],
         'user' => [
-            'class' => 'shopium24\mod\user\components\WebUser',
-            //'enableAutoLogin' => true,
-            //'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
-        ],
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                'google' => [
-                    'class' => 'yii\authclient\clients\Google',
-                    'clientId' => '323564730067-0guk795ucs29o9l86db8tocj8sijn130.apps.googleusercontent.com',
-                    'clientSecret' => 'cQp5F8dX5ww0uLnAbAMt9BFu',
-                ],
-                'facebook' => [
-                    'class' => 'yii\authclient\clients\Facebook',
-                    'clientId' => 'facebook_client_id',
-                    'clientSecret' => 'facebook_client_secret',
-                ],
-                'vkontakte' => [
-                    'class' => 'yii\authclient\clients\VKontakte',
-                    'clientId' => '4375462',
-                    'clientSecret' => '0Rr2U4iCdisssqDor1tY',
-                ],
-            ],
-        ],
-        'errorHandler' => [
-            //'class'=>'panix\engine\base\ErrorHandler'
-            //'errorAction' => 'site/error',
-            'errorAction' => 'main/error',
-            // 'errorView' => '@webroot/themes/basic/views/layouts/error.php'
+            'class' => 'panix\mod\user\components\WebUser',
+            'enableAutoLogin' => true,
+            // 'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            //'useFileTransport' => true,
-            //'layoutsPath' => '@web/mail/layouts',
-            //'viewsPath' => '@web/mail/views',
-            'messageConfig' => [
-                //    'from' => ['dev@corner-cms.com' => 'Admin'], // this is needed for sending emails
-                'charset' => 'UTF-8',
-            ]
+            'class' => 'panix\engine\Mailer',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -337,14 +257,33 @@ $config = [
                     'logFile' => '@runtime/logs/' . date('Y-m-d') . '/info.log',
                 ],
                 [
-                    'class' => 'yii\log\EmailTarget',
-                    'levels' => ['error'],
-                    'categories' => ['yii\db\*'],
-                    'message' => [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['profile'],
+                    'logVars' => [],
+                    'logFile' => '@runtime/logs/' . date('Y-m-d') . '/profile.log',
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['trace'],
+                    'logVars' => [],
+                    'logFile' => '@runtime/logs/' . date('Y-m-d') . '/trace.log',
+                ],
+                [
+                    'class' => 'panix\engine\log\EmailTarget',
+                    'levels' => ['error', 'warning'],
+                    'enabled' => false,//YII_DEBUG,
+                    'categories' => ['yii\base\*'],
+                    'except' => [
+                        'yii\web\HttpException:404',
+                        'yii\web\HttpException:403',
+                        'yii\web\HttpException:400',
+                        'yii\i18n\PhpMessageSource::loadMessages'
+                    ],
+                    /*'message' => [
                         'from' => ['log@pixelion.com.ua'],
                         'to' => ['dev@pixelion.com.ua'],
                         'subject' => 'Ошибки базы данных на сайте app',
-                    ],
+                    ],*/
                 ],
                 /*[
                     'class' => 'yii\log\DbTarget',
@@ -361,14 +300,77 @@ $config = [
         ],
         'languageManager' => ['class' => 'panix\engine\ManagerLanguage'],
         'settings' => ['class' => 'panix\engine\components\Settings'],
+        'maintenanceMode' => [
+            'class' => 'panix\engine\maintenance\MaintenanceMode',
+            // Allowed roles
+            //'roles' => [
+            //    'admin',
+            //],
+            //Retry-After header
+            // 'retryAfter' => 120 //or Wed, 21 Oct 2015 07:28:00 GMT for example
+        ],
+        'consoleRunner' => [
+            'class' => 'panix\engine\components\ConsoleRunner',
+            'file' => '@my/path/to/yii' // or an absolute path to console file
+        ],
+        'stats' => ['class' => 'panix\mod\stats\components\Stats'],
+        'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
+        'webcontrol' => ['class' => 'panix\engine\widgets\webcontrol\WebInlineControl'],
+        'pdf' => [
+            'class' => Pdf::class,
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'destination' => Pdf::DEST_BROWSER,
+            'mode' => Pdf::MODE_UTF8,
+        ],
+        'view' => [
+            'class' => \panix\mod\plugins\components\View::class,
+            'as Layout' => [
+                'class' => \panix\engine\behaviors\LayoutBehavior::class,
+            ],
+            'renderers' => [
+                'tpl' => [
+                    'class' => 'yii\smarty\ViewRenderer',
+                    //'cachePath' => '@runtime/Smarty/cache',
+                ],
+            ],
+            'theme' => ['class' => 'panix\engine\base\Theme'],
+        ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'clientId' => '323564730067-0guk795ucs29o9l86db8tocj8sijn130.apps.googleusercontent.com',
+                    'clientSecret' => 'cQp5F8dX5ww0uLnAbAMt9BFu',
+                ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => 'facebook_client_id',
+                    'clientSecret' => 'facebook_client_secret',
+                ],
+                'vkontakte' => [
+                    'class' => 'yii\authclient\clients\VKontakte',
+                    'clientId' => '4375462',
+                    'clientSecret' => '0Rr2U4iCdisssqDor1tY',
+                ],
+            ],
+        ],
+        'errorHandler' => [
+            'errorAction' => 'main/error',
+        ],
+
+        'seo' => ['class' => 'app\modules\seo\components\SeoExt'],
         'urlManager' => require(__DIR__ . '/urlManager.php'),
-        'db' => require($db),
+        'db' => require(__DIR__ . '/db.php'),
+
     ],
+    'params' => require(__DIR__ . '/params.php'),
     /*'as access' => [
         'class' => panix\mod\rbac\filters\AccessControl::class,
         'allowActions' => [
             '/*',
-            'admin/*',
+            //'admin/*',
             // The actions listed here will be allowed to everyone including guests.
             // So, 'admin/*' should not appear here in the production, of course.
             // But in the earlier stages of your development, you may probably want to
@@ -376,12 +378,11 @@ $config = [
             // otherwise you may not even take a first step.
         ]
     ],*/
-    'params' => require(dirname(__DIR__) . '/../common/config/params.php'),
+
 ];
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
-    //$config['bootstrap'][] = 'debug';
     $config['modules']['debug']['class'] = 'yii\debug\Module';
     // $config['modules']['debug']['traceLine'] = '<a href="phpstorm://open?url={file}&line={line}">{file}:{line}</a>';
     $config['modules']['debug']['traceLine'] = function ($options, $panel) {
