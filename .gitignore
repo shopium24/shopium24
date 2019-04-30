@@ -7,12 +7,11 @@ Desktop.ini
 
 vendor/
 nbproject/
-/config/db.php
-/config/db_local.php
+config/db.php
+config/db_local.php
 .idea
 
 
 composer.lock
 
-/web/themes/*/assets/.sass-cache
 /web/themes/*/assets/.sass-cache
