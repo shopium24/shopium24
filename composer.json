@@ -24,6 +24,7 @@
         "panix/wgt-telinput": "dev-master",
         "panix/mod-plugins": "dev-master",
         "panix/mod-rbac": "dev-master",
+        "panix/mod-seo": "dev-master",
         "panix/wgt-bootstrap-select": "dev-master",
         "shopium24/mod-plans": "dev-master",
         "shopium24/mod-user": "dev-master",
