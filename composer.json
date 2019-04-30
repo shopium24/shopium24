@@ -29,7 +29,8 @@
         "linslin/yii2-curl": "dev-master",
         "panix/wgt-bootstrap-select": "dev-master",
         "shopium24/mod-plans": "dev-master",
-        "shopium24/mod-user": "dev-master"
+        "shopium24/mod-user": "dev-master",
+        "nelexa/zip": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2",

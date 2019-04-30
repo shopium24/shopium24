@@ -1,0 +1,16 @@
+sass --watch dark.scss:dark.css --style expanded
+
+cd frontend/web/themes/shopium24/assets
+sass --watch scss:css --style expanded
+
+
+//���������
+sass --watch dark.scss:dark.css --style expanded dark.scss:dark.min.css --style compressed
+
+
+
+style:
+nested
+compact
+expanded
+compressed

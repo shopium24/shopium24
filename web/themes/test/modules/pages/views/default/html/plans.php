@@ -1,0 +1,1 @@
+<?php echo $this->render('@theme/views/layouts/partials/_plan_table'); ?>
