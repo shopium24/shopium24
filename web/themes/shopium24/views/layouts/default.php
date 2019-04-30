@@ -32,9 +32,9 @@ use panix\engine\widgets\Breadcrumbs;
     </div>
     <div class="bg-white" style="margin-bottom:100px">
 
-
+<div class="container">
         <?= $content ?>
-
+</div>
 
     </div>
     <?php echo $this->render('partials/footer'); ?>

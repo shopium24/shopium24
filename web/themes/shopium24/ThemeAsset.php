@@ -21,7 +21,7 @@ class ThemeAsset extends AssetBundle
     public $depends = [
         'panix\engine\assets\JqueryCookieAsset',
         'panix\engine\assets\CommonAsset',
-        'panix\mod\comments\assets\WebAsset',
+        'panix\mod\comments\WebAsset',
     ];
 
 }
