@@ -230,7 +230,7 @@ $config = [
             // 'cachePath' => '@common/runtime/cache'
         ],
         'user' => [
-            'class' => 'panix\mod\user\components\WebUser',
+            'class' => 'shopium24\mod\user\components\WebUser',
             'enableAutoLogin' => true,
             // 'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
@@ -360,7 +360,7 @@ $config = [
             'errorAction' => 'main/error',
         ],
 
-        'seo' => ['class' => 'app\modules\seo\components\SeoExt'],
+        'seo' => ['class' => 'panix\mod\seo\components\SeoExt'],
         'urlManager' => require(__DIR__ . '/urlManager.php'),
         'db' => require(__DIR__ . '/db.php'),
 

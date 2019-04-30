@@ -2,6 +2,7 @@
 
 namespace app\web\themes\shopium24;
 
+use Yii;
 use panix\engine\web\AssetBundle;
 
 /**
@@ -18,10 +19,16 @@ class ThemeAsset extends AssetBundle
         'css/theme.css',
     ];
 
-    public $depends = [
-        'panix\engine\assets\JqueryCookieAsset',
-        'panix\engine\assets\CommonAsset',
-        'panix\mod\comments\WebAsset',
-    ];
+    public function init()
+    {
+        $this->depends[] = 'panix\engine\assets\JqueryCookieAsset';
+        $this->depends[] = 'panix\engine\assets\CommonAsset';
+
+        if (Yii::$app->hasModule('comments')) {
+            $this->depends[] = 'panix\mod\comments\WebAsset';
+        }
+        parent::init();
+    }
+
 
 }

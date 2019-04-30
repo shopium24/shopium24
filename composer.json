@@ -28,7 +28,9 @@
         "panix/wgt-bootstrap-select": "dev-master",
         "shopium24/mod-plans": "dev-master",
         "shopium24/mod-user": "dev-master",
-        "nelexa/zip": "dev-master"
+        "nelexa/zip": "dev-master",
+        "panix/mod-admin": "dev-master",
+        "panix/mod-sitemap": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2",
