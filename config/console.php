@@ -5,7 +5,7 @@ return [
     'name' => 'PIXELION CMS',
     'basePath' => dirname(__DIR__),
     //'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log','panix\engine\BootstrapModule'],
+    'bootstrap' => ['log', 'panix\engine\BootstrapModule'],
     'controllerNamespace' => 'app\commands',
     'language' => 'ru',
     'aliases' => [
@@ -34,6 +34,9 @@ return [
         'user' => ['class' => 'shopium24\mod\user\Module'],
         'plans' => ['class' => 'shopium24\mod\plans\Module'],
         'hosting' => ['class' => 'app\modules\hosting\Module'],
+        'seo' => ['class' => 'panix\mod\seo\Module'],
+        'pages' => ['class' => 'panix\mod\pages\Module'],
+        'contacts' => ['class' => 'panix\mod\contacts\Module'],
     ],
     'controllerMap' => [
         'sitemap' => [
@@ -50,7 +53,7 @@ return [
     'components' => [
         //'session' => [
         //    'class' => 'yii\web\Session'
-       // ],
+        // ],
 
         'urlManager' => require(__DIR__ . '/urlManager.php'),
         'settings' => ['class' => 'panix\engine\components\Settings'],
