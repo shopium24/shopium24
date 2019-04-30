@@ -48,6 +48,8 @@ $config = [
         'user' => ['class' => 'shopium24\mod\user\Module'],
         'plans' => ['class' => 'shopium24\mod\plans\Module'],
         'hosting' => ['class' => 'app\modules\hosting\Module'],
+        'pages' => ['class' => 'panix\mod\pages\Module'],
+        'contacts' => ['class' => 'panix\mod\contacts\Module'],
     ],
     'components' => [
         'plugins' => [
@@ -359,8 +361,6 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'main/error',
         ],
-
-        'seo' => ['class' => 'panix\mod\seo\components\SeoExt'],
         'urlManager' => require(__DIR__ . '/urlManager.php'),
         'db' => require(__DIR__ . '/db.php'),
 
