@@ -5,7 +5,7 @@ return [
     'name' => 'PIXELION CMS',
     'basePath' => dirname(__DIR__),
     //'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','panix\engine\BootstrapModule'],
     'controllerNamespace' => 'app\commands',
     'language' => 'ru',
     'aliases' => [
@@ -14,24 +14,26 @@ return [
         '@uploads' => '@app/web/uploads',
     ],
     'modules' => [
-        'sitemap' => ['class' => 'panix\mod\sitemap\Module'],
-        //'sendpulse' => ['class' => 'panix\mod\sendpulse\Module'],
-        //'seo' => ['class' => 'app\modules\seo\Module'],
         'plugins' => [
             'class' => 'panix\mod\plugins\Module',
             'pluginsDir' => [
-                // '@plugins/core',
                 '@panix/engine/plugins',
+                // '@plugins/core',
             ]
         ],
-        //'rbac' => [
-        //    'class' => 'panix\mod\rbac\Module',
-        //    'as access' => [
-        //        'class' => panix\mod\rbac\filters\AccessControl::class
-        //    ],
-       // ],
-        //'admin' => ['class' => 'panix\mod\admin\Module'],
-        //'user' => ['class' => 'panix\mod\user\Module'],
+        'sitemap' => [
+            'class' => 'panix\mod\sitemap\Module',
+        ],
+        'rbac' => [
+            'class' => 'panix\mod\rbac\Module',
+            //'as access' => [
+            //    'class' => panix\mod\rbac\filters\AccessControl::class
+            //],
+        ],
+        'admin' => ['class' => 'panix\mod\admin\Module'],
+        'user' => ['class' => 'shopium24\mod\user\Module'],
+        'plans' => ['class' => 'shopium24\mod\plans\Module'],
+        'hosting' => ['class' => 'app\modules\hosting\Module'],
     ],
     'controllerMap' => [
         'sitemap' => [

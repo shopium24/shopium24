@@ -2,9 +2,9 @@
 
 return [
     'class' => 'panix\engine\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=MY_DB_NAME',
+    'dsn' => 'mysql:host=localhost;dbname=shopium24',
     'username'=>'root',
-    'password'=>'',
+    'password'=>'47228960panix',
     'charset'=>'utf8',
     //'on afterOpen' => function($event) {
     //$event->sender->createCommand("SET time_zone = '" . date('P') . "'")->execute();
