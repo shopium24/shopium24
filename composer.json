@@ -21,12 +21,9 @@
         "panix/mod-stats": "dev-master",
         "panix/mod-delivery": "dev-master",
         "panix/mod-forum": "dev-master",
-        "phpoffice/phppresentation": "dev-master",
-        "phpoffice/phpword": "v0.13.*",
         "panix/wgt-telinput": "dev-master",
         "panix/mod-plugins": "dev-master",
         "panix/mod-rbac": "dev-master",
-        "linslin/yii2-curl": "dev-master",
         "panix/wgt-bootstrap-select": "dev-master",
         "shopium24/mod-plans": "dev-master",
         "shopium24/mod-user": "dev-master",
@@ -55,10 +52,8 @@
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [
                 {
-                    "frontend/runtime": "0777",
-                    "backend/runtime": "0777",
-                    "frontend/assets": "0777",
-                    "backend/assets": "0777",
+                    "runtime": "0777",
+                    "assets": "0777",
                     "yii": "0755"
                 }
             ]
