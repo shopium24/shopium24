@@ -1,18 +1,27 @@
 <?php
+use panix\engine\grid\GridView;
+use panix\engine\widgets\Pjax;
 
-$this->widget('ext.adminList.GridView', array(
-    'dataProvider' => $model->search(),
-    'enableHeader' => true,
-    'name' => $this->pageName,
-    'filter' => $model,
-    'autoColumns' => false,
-    'columns' => array(
+Pjax::begin([
+    'id' => 'pjax-grid-redirects',
+]);
+echo GridView::widget([
+    'tableOptions' => ['class' => 'table table-striped'],
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'showFooter' => true,
+    'footerRowOptions' => ['style' => 'font-weight:bold;', 'class' => 'text-center'],
+    'layoutOptions' => [
+        'title' => $this->context->pageName
+    ],
+    'columns' => [
+        ['class' => 'panix\engine\grid\columns\CheckboxColumn'],
         'url_from',
         'url_to',
-        array(
-            'class' => 'ButtonColumn',
-            'template' => '{switch}{update}{delete}',
-        ),
-    )
-));
-
+        [
+            'class' => 'panix\engine\grid\columns\ActionColumn',
+            'template' => '{update} {switch} {delete}'
+        ]
+    ]
+]);
+Pjax::end();

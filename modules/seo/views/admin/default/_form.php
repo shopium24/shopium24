@@ -5,7 +5,7 @@ use yii\helpers\ArrayHelper;
 use panix\ext\taginput\TagInput;
 use panix\ext\tinymce\TinyMce;
 
-\app\modules\seo\assets\SeoAsset::register($this);
+\app\modules\seo\SeoAsset::register($this);
 
 ?>
 
@@ -48,9 +48,6 @@ $form = ActiveForm::begin([
 <?= $form->field($model, 'url')->textInput() ?>
 <?= $form->field($model, 'title')->textInput() ?>
 <?= $form->field($model, 'description')->textInput() ?>
-<?= $form->field($model, 'keywords')->widget(TagInput::class, [
-])->hint(Yii::t('seo/default', 'KEYWORDS_HINT'));
-?>
 <?= $form->field($model, 'h1')->textInput() ?>
 <?= $form->field($model, 'text')->widget(TinyMce::class, [
     'options' => ['rows' => 6],
@@ -60,7 +57,7 @@ $form = ActiveForm::begin([
 
 <div class="form-group">
     <div class="col-sm-4"></div>
-    <div class="col-sm-8"><?php echo Html::dropDownList('title_param', "[$model->keywords]param", ArrayHelper::map($this->context->getParams(), "value", "name", 'group'), array("empty" => "Свойства", 'class' => 'selectpicker addparams', 'data-id' => $model->id)); ?>
+    <div class="col-sm-8"><?php echo Html::dropDownList('title_param', "param", ArrayHelper::map($this->context->getParams(), "value", "name", 'group'), array("empty" => "Свойства", 'class' => 'selectpicker addparams', 'data-id' => $model->id)); ?>
         <?php echo $this->render('_formMetaParams', array('model' => $model)); ?></div>
 </div>
 <div class="form-group" style="display:none;">
@@ -73,7 +70,7 @@ $form = ActiveForm::begin([
 </div>
 
 <div class="form-group text-center">
-    <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'CREATE') : Yii::t('app', 'UPDATE'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    <?= $model->submitButton(); ?>
 </div>
 
 <?php ActiveForm::end(); ?>
