@@ -11,34 +11,35 @@
 
 use panix\engine\db\Migration;
 use panix\mod\admin\models\SettingsForm;
+use panix\engine\components\Settings;
 
 class m171205_114749_settings extends Migration
 {
 
-    public $tableName = '{{%settings}}';
-
     public function up()
     {
-        $this->createTable($this->tableName, [
+        $this->createTable(Settings::$tableName, [
             'id' => $this->primaryKey()->unsigned(),
             'category' => $this->string(255)->notNull(),
-            'param' => $this->string(255)->notNull(),
+            'param' => $this->string(255),
             'value' => $this->text(),
         ]);
-        $this->createIndex('param', $this->tableName, 'param');
-        $this->createIndex('category', $this->tableName, 'category');
+
+        $this->createIndex('param', Settings::$tableName, 'param');
+        $this->createIndex('category', Settings::$tableName, 'category');
 
         $settings = [];
         foreach (SettingsForm::defaultSettings() as $key => $value) {
             $settings[] = [SettingsForm::$category, $key, $value];
         }
 
-        $this->batchInsert($this->tableName, ['category', 'param', 'value'], $settings);
+        $this->batchInsert(Settings::$tableName, ['category', 'param', 'value'], $settings);
+
     }
 
     public function down()
     {
-        $this->dropTable($this->tableName);
+        $this->dropTable(SettingsForm::$tableName);
     }
 
 }
