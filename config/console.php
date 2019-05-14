@@ -37,6 +37,7 @@ return [
         'seo' => ['class' => 'panix\mod\seo\Module'],
         'pages' => ['class' => 'panix\mod\pages\Module'],
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
+		'docs' => ['class' => 'panix\mod\docs\Module'],
     ],
     'controllerMap' => [
         'sitemap' => [
