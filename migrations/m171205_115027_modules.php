@@ -22,7 +22,7 @@ class m171205_115027_modules extends Migration
             'name' => $this->string(15),
             'className' => $this->string(100),
             'switch' => $this->boolean()->defaultValue(1),
-            'access' => $this->smallInteger(8)
+            'access' => $this->smallInteger(8),
         ]);
         $this->createIndex('name', $this->tableName, 'name');
     }

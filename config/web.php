@@ -7,7 +7,7 @@ Yii::setAlias('@console', dirname(__DIR__) . '/../console/web');
 $config = [
     'id' => 'app',
     'name' => 'PIXELION CMS',
-    'homeUrl' => '/',
+    'homeUrl' => '',
     'language' => 'ru',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'panix\engine\controllers',
@@ -222,7 +222,7 @@ $config = [
         ],
         'request' => [
             'class' => 'panix\engine\WebRequest',
-            //'baseUrl' => '/admin',
+            'baseUrl' => '',
             //'csrfParam' => '_csrf-backend',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'fpsiKaSs1Mcb6zwlsUZwuhqScBs5UgPQ',
@@ -301,6 +301,7 @@ $config = [
                 ],*/
             ],
         ],
+        'curl' => ['class' => 'panix\engine\Curl'],
         'languageManager' => ['class' => 'panix\engine\ManagerLanguage'],
         'settings' => ['class' => 'panix\engine\components\Settings'],
         'maintenanceMode' => [

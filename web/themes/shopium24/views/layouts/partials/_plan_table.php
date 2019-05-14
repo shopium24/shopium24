@@ -16,7 +16,7 @@ $plans = Plans::find()->all();
 $groups = PlansOptionsGroups::find()->all();
 ?>
 
-<h1>15 минут</h1>
+<h1>15 минут1</h1>
 <div class="help-block">Всего через 15 минут у вас будет полностью рабочий интернет-магазин! Достаточно зарегистрироватся.</div>
 <div class="wow fadeInUp">
     <div class="table-responsive membership-pricing-table">

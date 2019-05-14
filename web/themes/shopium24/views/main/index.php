@@ -1,7 +1,7 @@
 <div class="container-fluid bg-white" name="plans">
     <div class="row">
-        <div class="container block-padding">
-<?php echo $this->render('/layouts/partials/_plan_table'); ?>
+        <div class="container block-padding">1111
+            <?php echo $this->render('/layouts/partials/_plan_table'); ?>
         </div>
     </div>
 </div>
