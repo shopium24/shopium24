@@ -28,8 +28,11 @@ if ($model->load(Yii::$app->request->post()) && $model->validate()) {
         }
         $api = new Api('dns_domain', 'check', ['stack' => $stackDomain]); //array('stack' => array($model->name . "." . $model->domain))
 
-        foreach ($api->response->data as $domain => $data) {
-            $checkData[$domain][] = $data;
+
+        if ($api->response) {
+            foreach ($api->response->data as $domain => $data) {
+                $checkData[$domain][] = $data;
+            }
         }
     }
 }

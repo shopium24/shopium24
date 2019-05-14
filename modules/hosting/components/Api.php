@@ -34,16 +34,15 @@ class Api
             'auth_token' => $api_config->auth_token,
             'class' => $class,
             'method' => $method,
-        ],$config)))
-            ->setHeaders(['Content-Type' => "application/json; charset=".Yii::$app->charset])
+        ], $config)))
+            ->setHeaders(['Content-Type' => "application/json; charset=" . Yii::$app->charset])
             ->post('https://adm.tools/api.php');
 
 
 
         if ($curl->errorCode === null) {
-        $this->response = Json::decode($response,false);
 
-
+            $this->response = Json::decode($response, false);
 
         } else {
             // List of curl error codes here https://curl.haxx.se/libcurl/c/libcurl-errors.html
@@ -53,10 +52,13 @@ class Api
                     //host unknown example
                     break;
             }
+            $this->response = $response;
         }
 
     }
-    public static function reasonCode($data) {
+
+    public static function reasonCode($data)
+    {
         if ($data->reason_code == 'already_served') {
             return 'Доменное имя уже обслуживается';
         } elseif ($data->reason_code == 'object_exists') {
