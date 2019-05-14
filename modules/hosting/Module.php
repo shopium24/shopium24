@@ -88,7 +88,6 @@ class Module extends \panix\engine\WebModule {
     }
     public function getAdminSidebar()
     {
-
-        return (new \panix\engine\bootstrap\BackendNav)->findMenu($this->id)['items'];
+        return (new \panix\mod\admin\widgets\sidebar\BackendNav)->findMenu($this->id)['items'];
     }
 }
