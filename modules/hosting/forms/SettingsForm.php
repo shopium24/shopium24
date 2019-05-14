@@ -9,7 +9,7 @@ class SettingsForm extends SettingsModel {
     const NAME = 'hosting';
 
     protected $module = 'hosting';
-    protected $category = 'hosting';
+    public static $category = 'hosting';
 
     public $auth_login;
     public $auth_token;
