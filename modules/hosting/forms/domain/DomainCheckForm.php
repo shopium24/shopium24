@@ -3,8 +3,9 @@
 namespace app\modules\hosting\forms\domain;
 
 use Yii;
+use panix\engine\base\Model;
 
-class DomainCheckForm extends \panix\engine\base\Model {
+class DomainCheckForm extends Model {
 
     protected $module = 'hosting';
     public $name;

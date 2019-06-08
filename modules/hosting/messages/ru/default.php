@@ -17,6 +17,7 @@ return [
     'BTN_DATABASE_CREATE' => 'Добавить базу данных',
     'BTN_FTP_CREATE' => 'Добавить FTP пользователя',
     'BTN_MAILBOX_CREATE' => 'Добавить почту',
+    'BTN_DOMAIN_DNS_RECORD_RESTORE'=>'Восстановить по-умолчанию',
     //breadcrumbs
     'CHECK' => 'Проверить',
     'HOSTING_DATABASE' => 'База данных',
@@ -32,6 +33,8 @@ return [
     'DOMAIN_AVAILABLE_FREE' => 'свободен',
     'DOMAIN_AVAILABLE_BUSY' => 'занят',
     'DOMAINS' => 'Домены',
+    'DOMAIN_DNS_NS'=>'NS сервера домена',
+    'DOMAIN_DNS_NS2'=>'NS сервера домена {domain}',
     'DOMAIN_ZONES' => 'Список DNS зон с ценами на них',
     'DOMAIN_INFO' => 'Список доменов, к которым у Вас открыт доступ',
     'HOSTING_QUOTA' => 'Квоты хостинг аккаунтов',
