@@ -4,8 +4,9 @@ namespace app\modules\hosting\forms\hosting_site;
 
 use Yii;
 use app\modules\hosting\components\Api;
+use panix\engine\base\Model;
 
-class HostCreateForm extends \panix\engine\base\Model {
+class HostCreateForm extends Model {
 
     protected $module = 'hosting';
     public $site;

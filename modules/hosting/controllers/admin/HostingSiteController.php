@@ -10,26 +10,19 @@ use app\modules\hosting\forms\hosting_site\HostCreateForm;
 class HostingSiteController extends CommonController {
 
     public function actionIndex() {
-        return $this->render('index');
-    }
-
-    public function actionInfo2() {
-        $api = new Api('hosting_site', 'info', [], true);
-        if ($api->response['status'] == 'success') {
-            return $this->render('info', ['response' => $api->response['data']]);
-        } else {
-            throw new Exception($api->response['message']);
-        }
-    }
-    public function actionInfo() {
+        $this->buttons[] = [
+            'label' => Yii::t('hosting/default', 'HOSTING_SITE_HOST_CREATE'),
+            'url' => ['host-create'],
+            'options' => ['class' => 'btn btn-success']
+        ];
         $api = new Api('hosting_site', 'info');
         if ($api->response['status'] == 'success') {
-            return $this->render('info', ['response' => $api->response['data']]);
+            return $this->render('index', ['response' => $api->response['data']]);
         } else {
             throw new Exception($api->response['message']);
         }
     }
-    
+
 
     public function actionHostCreate() {
 
