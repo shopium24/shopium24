@@ -11,18 +11,14 @@ class BillingController extends CommonController {
 
 
     public function actionIndex() {
-        return $this->render('index');
-    }
-
-    public function actionInfo() {
         $api = new Api('billing_invoice', 'info');
         if ($api->response['status'] == 'success') {
-            return $this->render('info', ['response' => $api->response['data']]);
+            return $this->render('index', ['response' => $api->response['data']]);
         } else {
             throw new Exception($api->response['message']);
         }
     }
-    
+
     
     public function actionPay() {
         $api = new Api('billing_invoice', 'pay',['invoice'=>Yii::$app->request->get('invoice')]);
@@ -41,6 +37,16 @@ class BillingController extends CommonController {
         } else {
             throw new Exception($api->response['message']);
         }
+    }
+
+    /**
+     * Метод prolong - пролонгация услуг. Выписывает счет на оплату.
+     */
+    public function actionProlongDomain(){
+        $api = new Api('billing_cart', 'prolong',[]);
+    }
+    public function actionProlongHosting(){
+        $api = new Api('billing_cart', 'prolong',[]);
     }
 
 

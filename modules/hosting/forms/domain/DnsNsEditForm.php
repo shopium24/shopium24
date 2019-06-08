@@ -22,18 +22,22 @@ class DnsNsEditForm extends Model
     {
         return [
             [['domain', 'stack'], 'required'],
+
             [['ns1', 'ns2', 'ns3', 'ns4'], 'trim'],
+            [['ns1', 'ns2', 'ns3', 'ns4'], 'unique', 'targetAttribute' => ['ns1', 'ns2', 'ns3', 'ns4']],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'ns1'=>'NS #1',
-            'ns2'=>'NS #2',
-            'ns3'=>'NS #3',
-            'ns4'=>'NS #4',
+            'ns1' => 'NS #1',
+            'ns2' => 'NS #2',
+            'ns3' => 'NS #3',
+            'ns4' => 'NS #4',
         ];
     }
+
+
 
 }
