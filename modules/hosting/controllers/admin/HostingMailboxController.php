@@ -7,23 +7,34 @@ use app\modules\hosting\components\Api;
 use app\modules\hosting\forms\hosting_mailbox\MailCreateForm;
 use yii\base\Exception;
 
-class HostingMailboxController extends CommonController {
+class HostingMailboxController extends CommonController
+{
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $this->buttons[] = [
             'label' => Yii::t('hosting/default', 'BTN_MAILBOX_CREATE'),
-            'url' => ['admin/hosting/hosting-mailbox/create']
+            'url' => ['create'],
+            'options' => ['class' => 'btn btn-success']
         ];
         $api = new Api('hosting_mailbox', 'info');
+
+
+        $apiLimits = new Api('hosting_mailbox', 'limits');
+
         if ($api->response['status'] == 'success') {
-            return $this->render('index', ['response' => $api->response['data']]);
+            return $this->render('index', [
+                'response' => $api->response['data'],
+                'limits'=>$apiLimits->response
+            ]);
         } else {
             throw new Exception($api->response['message']);
         }
     }
 
 
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new MailCreateForm();
         $response = false;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
@@ -48,12 +59,13 @@ class HostingMailboxController extends CommonController {
             }
         }
         return $this->render('create', [
-                    'model' => $model,
-                    'response' => $response,
+            'model' => $model,
+            'response' => $response,
         ]);
     }
 
-    public function actionEdit() {
+    public function actionEdit()
+    {
 
         $this->buttons[] = [
             'label' => Yii::t('hosting/default', 'BTN_MAILBOX_CREATE'),
@@ -66,7 +78,7 @@ class HostingMailboxController extends CommonController {
 
         $api = new Api('hosting_mailbox', 'info', [
             'mailbox' => $mailbox
-                ], true);
+        ], true);
 
         if ($api->response['status'] == 'success') {
             $model->mailbox = $api->response['data']['name'];
@@ -96,17 +108,18 @@ class HostingMailboxController extends CommonController {
 
                 if ($api->response['status'] == 'success') {
                     $response = $api->response['data'];
-                    Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_EDIT',['email'=>$model->mailbox]));
+                    Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_EDIT', ['email' => $model->mailbox]));
                 }
             }
         }
         return $this->render('create', [
-                    'model' => $model,
-                    'response' => $response,
+            'model' => $model,
+            'response' => $response,
         ]);
     }
 
-    public function actionDelete() {
+    public function actionDelete()
+    {
         if (Yii::$app->request->get('email')) {
             $api = new Api('hosting_mailbox', 'delete', [
                 'mailbox' => Yii::$app->request->get('email'),
@@ -120,7 +133,8 @@ class HostingMailboxController extends CommonController {
         return $this->redirect(['/admin/hosting/hostingmailbox/info']);
     }
 
-    public function actionClear() {
+    public function actionClear()
+    {
         if (Yii::$app->request->get('email')) {
             $api = new Api('hosting_mailbox', 'clear', [
                 'mailbox' => Yii::$app->request->get('email'),

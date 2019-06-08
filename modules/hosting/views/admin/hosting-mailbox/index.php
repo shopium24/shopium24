@@ -3,8 +3,12 @@
 use panix\engine\Html;
 
 ?>
-
+Limits
 <?php
+
+
+print_r($limits['data']);
+print_r($limits['notes']);
 $this->registerJs("$('[data-toggle=\"tooltip\"]').tooltip();");
 ?>
 
@@ -42,11 +46,20 @@ $this->registerJs("$('[data-toggle=\"tooltip\"]').tooltip();");
                     <td class="text-center"><?= $data['type'] ?></td>
                     <td class="text-center"><?= $data['autospam'] ?></td>
                     <td class="text-center"><?= implode('<br/>', $data['forward']); ?></td>
-                    <td><?php print_r($data['autoresponder']) ?></td>
-                    <td>
-                        <?= Html::a(Html::icon('edit'), ['/admin/hosting/hostingmailbox/edit', 'email' => $data['name']]) ?>
-                        <?= Html::a(Html::icon('refresh'), ['/admin/hosting/hostingmailbox/clear', 'email' => $data['name']]) ?>
-                        <?= Html::a(Html::icon('delete'), ['/admin/hosting/hostingmailbox/delete', 'email' => $data['name']]) ?>
+                    <td class="text-center">
+                        <?php if ($data['autoresponder']['enabled']) { ?>
+                            <?= $data['autoresponder']['title']; ?>
+                            <?= $data['autoresponder']['text']; ?>
+                        <?php } else { ?>
+                            <span class="badge badge-secondary">Откл.</span>
+                        <?php } ?>
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group btn-group-sm">
+                            <?= Html::a(Html::icon('edit'), ['edit', 'email' => $data['name']], ['class' => 'btn btn-outline-secondary']) ?>
+                            <?= Html::a(Html::icon('refresh'), ['clear', 'email' => $data['name']], ['class' => 'btn btn-outline-secondary']) ?>
+                            <?= Html::a(Html::icon('delete'), ['delete', 'email' => $data['name']], ['class' => 'btn btn-outline-danger']) ?>
+                        </div>
                     </td>
                 </tr>
             <?php } ?>

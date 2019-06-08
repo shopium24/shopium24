@@ -50,7 +50,7 @@ class Module extends \panix\engine\WebModule {
                     [
                         'label' => Yii::t('hosting/default', 'BILLING'),
                         'url' =>['/admin/hosting/billing'],
-                        'icon' => $this->icon,
+                        'icon' => 'cash-money',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_FTP'),
@@ -60,12 +60,12 @@ class Module extends \panix\engine\WebModule {
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_MAILBOX'),
                         'url' =>['/admin/hosting/hosting-mailbox'],
-                        'icon' => $this->icon,
+                        'icon' => 'envelope',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_LOG'),
                         'url' =>['/admin/hosting/hosting-log'],
-                        'icon' => $this->icon,
+                        'icon' => 'log',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_QUOTA'),
@@ -80,6 +80,11 @@ class Module extends \panix\engine\WebModule {
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_ACCOUNT'),
                         'url' =>['/admin/hosting/hosting-account'],
+                        'icon' => 'database',
+                    ],
+                    [
+                        'label' => Yii::t('hosting/default', 'HOSTING_SITE'),
+                        'url' =>['/admin/hosting/hosting-site'],
                         'icon' => 'database',
                     ],
                 ],

@@ -11,6 +11,7 @@ echo Html::a('hosting_account', ['/admin/hosting/hosting-account'], ['class' => 
 echo Html::a('hosting_log', ['/admin/hosting/hosting-log'], ['class' => 'btn btn-secondary']);
 echo Html::a('domain', ['/admin/hosting/domain'], ['class' => 'btn btn-secondary']);
 echo Html::a('billing', ['/admin/hosting/billing'], ['class' => 'btn btn-secondary']);
+echo Html::a('site', ['/admin/hosting/hosting-site'], ['class' => 'btn btn-success']);
 echo Html::a('settings', ['/admin/hosting/settings'], ['class' => 'btn btn-success']);
 
 
