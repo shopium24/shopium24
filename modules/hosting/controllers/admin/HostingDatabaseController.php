@@ -3,7 +3,7 @@
 namespace app\modules\hosting\controllers\admin;
 
 use Yii;
-use yii\base\Exception;
+use panix\engine\Html;
 use app\modules\hosting\components\Api;
 use app\modules\hosting\forms\hosting_database\DatabaseCreateForm;
 use app\modules\hosting\forms\hosting_database\UserPasswordForm;
@@ -11,32 +11,27 @@ use app\modules\hosting\forms\hosting_database\UserPrivilegesForm;
 
 class HostingDatabaseController extends CommonController
 {
-
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
-
     /**
      * Возвращает информацию о базах данных аккаунта.
      *
      * @return string
      */
-    public function actionInfo()
+    public function actionIndex()
     {
-       // $this->pageName = Yii::t('hosting/default', 'BTN_DATABASE_CREATE');
         $this->buttons[] = [
             'label' => Yii::t('hosting/default', 'BTN_DATABASE_CREATE'),
-            'url' => ['database-create']
+            'url' => ['database-create'],
+            'options' => ['class' => 'btn btn-success']
         ];
         $api = new Api('hosting_database', 'info');
         if ($api->response['status'] == 'success') {
-            return $this->render('info', ['response' => $api->response['data']]);
+        return $this->render('index', ['response' => $api->response['data']]);
         } else {
             Yii::$app->session->setFlash('danger', $api->response['message']);
 
         }
     }
+
 
     /**
      * Создание базы данных.
@@ -157,4 +152,14 @@ class HostingDatabaseController extends CommonController
         return $this->redirect(['/admin/hosting/hostingdatabase/info']);
     }
 
+    public function getAddonsMenu()
+    {
+        return [
+            [
+                'label' => Yii::t('app', 'user-privileges'),
+                'url' => ['user-privileges'],
+                'icon' => Html::icon('user'),
+            ],
+        ];
+    }
 }

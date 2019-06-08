@@ -3,8 +3,9 @@
 namespace app\modules\hosting\controllers\admin;
 
 use Yii;
+use panix\engine\controllers\AdminController;
 
-class CommonController extends \panix\engine\controllers\AdminController {
+class CommonController extends AdminController {
 
     public function beforeAction($event) {
         $this->pageName = Yii::t('hosting/default', 'MODULE_NAME');

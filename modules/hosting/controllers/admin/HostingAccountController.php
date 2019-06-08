@@ -10,10 +10,6 @@ use app\modules\hosting\components\Api;
 class HostingAccountController extends CommonController {
 
     public function actionIndex() {
-        return $this->render('index');
-    }
-
-    public function actionInfo() {
         if (Yii::$app->request->get('account')) {
             $account = Yii::$app->request->get('account');
         } else {
@@ -21,11 +17,12 @@ class HostingAccountController extends CommonController {
         }
         $api = new Api('hosting_account', 'info', ['account' => $account]);
         if ($api->response['status'] == 'success') {
-            return $this->render('info', ['response' => $api->response['data']]);
+            return $this->render('index', ['response' => $api->response['data']]);
         } else {
             throw new Exception($api->response['message']);
         }
     }
+
 
     public function actionPlans() {
         $api = new Api('hosting_account', 'plans');
@@ -36,4 +33,32 @@ class HostingAccountController extends CommonController {
         }
     }
 
+    public function actionMigrate() {
+        $api = new Api('hosting_account', 'migrate');
+        if ($api->response['status'] == 'success') {
+            return $this->render('migrate', ['response' => $api->response['data']]);
+        } else {
+            throw new Exception($api->response['message']);
+        }
+    }
+
+    public function actionMigrateCancel() {
+        $api = new Api('hosting_account', 'migration_cancel');
+        if ($api->response['status'] == 'success') {
+            return $this->render('migrate', ['response' => $api->response['data']]);
+        } else {
+            throw new Exception($api->response['message']);
+        }
+    }
+
+    public function getAddonsMenu()
+    {
+        return [
+            [
+                'label' => Yii::t('hosting/default', 'PLANS'),
+                'url' => ['plans'],
+               // 'icon' => Html::icon('user'),
+            ],
+        ];
+    }
 }
