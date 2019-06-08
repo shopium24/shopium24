@@ -6,6 +6,8 @@ use Yii;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\base\InvalidParamException;
+use yii\helpers\VarDumper;
+use yii\httpclient\Client;
 
 class Api
 {
@@ -28,7 +30,7 @@ class Api
                 $config['account'] = $api_config->account;
             }
         }
-        $curl = Yii::$app->curl;
+       /* $curl = Yii::$app->curl;
         $response = $curl->setRawPostData(Json::encode(ArrayHelper::merge([
             'auth_login' => $api_config->auth_login,
             'auth_token' => $api_config->auth_token,
@@ -36,32 +38,46 @@ class Api
             'method' => $method,
         ], $config)))
             ->setHeaders(['Content-Type' => "application/json; charset=" . Yii::$app->charset])
-            ->post('https://adm.tools/api.php');
+            ->post('https://adm.tools/api.php');*/
 
 
 
-        if ($curl->errorCode === null) {
 
-            $this->response = Json::decode($response, false);
 
-        } else {
-            // List of curl error codes here https://curl.haxx.se/libcurl/c/libcurl-errors.html
-            switch ($curl->errorCode) {
+        $client = new Client();
+        $response = $client->createRequest()
+            ->setMethod('POST')
+            ->addHeaders(['content-type' => "application/json; charset=" . Yii::$app->charset])
+            ->setUrl('https://adm.tools/api.php')
+           /* ->setData(Json::encode(ArrayHelper::merge([
+                'auth_login' => $api_config->auth_login,
+                'auth_token' => $api_config->auth_token,
+                'class' => $class,
+                'method' => $method,
+            ], $config)))*/
+            ->setData(ArrayHelper::merge([
+                'auth_login' => $api_config->auth_login,
+                'auth_token' => $api_config->auth_token,
+                'class' => $class,
+                'method' => $method,
+            ], $config))
+            ->send();
 
-                case 6:
-                    //host unknown example
-                    break;
-            }
-            $this->response = $response;
+
+
+        if ($response->isOk) {
+            $this->response = $response->data;
         }
+       // VarDumper::dump($this->response,10,true);die;
+
 
     }
 
     public static function reasonCode($data)
     {
-        if ($data->reason_code == 'already_served') {
+        if ($data['reason_code'] == 'already_served') {
             return 'Доменное имя уже обслуживается';
-        } elseif ($data->reason_code == 'object_exists') {
+        } elseif ($data['reason_code'] == 'object_exists') {
             return 'object_exists';
         } else {
             return '---';
