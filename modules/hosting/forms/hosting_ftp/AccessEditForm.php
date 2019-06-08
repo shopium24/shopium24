@@ -16,18 +16,18 @@ class AccessEditForm extends \panix\engine\base\Model {
     public function init() {
         $api = new Api('hosting_ftp', 'access_info', ['account' => $this->account]);
         $ips = [];
-        if ($api->response->status == 'success') {
+        if ($api->response['status'] == 'success') {
            
-            if(isset($api->response->data->stack)){
-                foreach($api->response->data->stack as $stack){
-                     $ips[] = $stack->ip;
+            if(isset($api->response['data']->stack)){
+                foreach($api->response['data']->stack as $stack){
+                     $ips[] = $stack['ip'];
                 }
                 $this->ip = implode(',',$ips);
             }
 
 
-            $this->active = $api->response->data->active;
-            $this->web_ftp = $api->response->data->web_ftp;
+            $this->active = $api->response['data']['active'];
+            $this->web_ftp = $api->response['data']['web_ftp'];
         }
         parent::init();
     }
@@ -44,9 +44,9 @@ class AccessEditForm extends \panix\engine\base\Model {
     public function getAccounts() {
         $api = new Api('hosting_account', 'info', ['account' => false]);
         $result = [];
-        if ($api->response->status == 'success') {
-            foreach ($api->response->data as $data) {
-                $result[$data->login] = $data->login;
+        if ($api->response['status'] == 'success') {
+            foreach ($api->response['data'] as $data) {
+                $result[$data['login']] = $data['login'];
             }
         }
         return $result;

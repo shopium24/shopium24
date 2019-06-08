@@ -26,8 +26,8 @@ class CreateFtpForm extends \panix\engine\base\Model {
     public function getAccounts() {
         $api = new Api('hosting_account', 'info', ['account' => false]);
         $result = [];
-        if ($api->response->status == 'success') {
-            foreach ($api->response->data as $data) {
+        if ($api->response['status'] == 'success') {
+            foreach ($api->response['data'] as $data) {
                 $result[$data->login] = $data->login;
             }
         }

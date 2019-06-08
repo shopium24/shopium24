@@ -20,7 +20,7 @@ use panix\engine\Html;
             <td class="text-center"><?= $data->sum; ?> <?= $data->currency; ?></td>
             <td class="text-center"><?= $data->refund; ?></td>
             <td class="text-center">
-                <?= Html::a(Html::icon('cart'), ['/admin/hosting/billing/pay', 'invoice' => $data->id],['class'=>'btn btn-default']) ?>
+                <?= Html::a(Html::icon('cart'), ['/admin/hosting/billing/pay', 'invoice' => $data->id],['class'=>'btn btn-secondary']) ?>
             </td>
         </tr>
     <?php } ?>

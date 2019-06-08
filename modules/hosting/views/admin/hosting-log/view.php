@@ -11,7 +11,7 @@ use panix\engine\CMS;
             <th>ip</th>
             <th>request</th>
         </tr>
-        <?php foreach ($response->log as $data) { ?>
+        <?php foreach ($response['log'] as $data) { ?>
             <tr>
                 <td><?= $data->date; ?></td>
                 <td><?= CMS::ip($data->ip); ?></td>

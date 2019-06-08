@@ -20,19 +20,19 @@ class HostingAccountController extends CommonController {
             $account = false;
         }
         $api = new Api('hosting_account', 'info', ['account' => $account]);
-        if ($api->response->status == 'success') {
-            return $this->render('info', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('info', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 
     public function actionPlans() {
         $api = new Api('hosting_account', 'plans');
-        if ($api->response->status == 'success') {
-            return $this->render('plans', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('plans', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 

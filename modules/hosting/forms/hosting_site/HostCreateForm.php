@@ -21,9 +21,9 @@ class HostCreateForm extends \panix\engine\base\Model {
 
     public function validateSubdomain($attribute) {
         $api = new Api('hosting_site', 'info', ['site' => $this->site]);
-        if ($api->response->status == 'success') {
+        if ($api->response['status'] == 'success') {
             $domains = [];
-            foreach ($api->response->data->{$this->site}->hosts as $subdomain => $data) {
+            foreach ($api->response['data']->{$this->site}->hosts as $subdomain => $data) {
                 $domains[] = $subdomain;
             }
             if (in_array($this->$attribute, $domains)) {
@@ -39,8 +39,8 @@ class HostCreateForm extends \panix\engine\base\Model {
     public function getSiteList() {
         $api = new Api('hosting_site', 'info');
         $result = [];
-        if ($api->response->status == 'success') {
-            foreach (array_keys((array) $api->response->data) as $data) {
+        if ($api->response['status'] == 'success') {
+            foreach (array_keys((array) $api->response['data']) as $data) {
                 $result[$data] = $data;
             }
         }

@@ -1,20 +1,20 @@
 <?php
 
 function brandsort($a, $b) {
-    return strnatcmp($a->classname, $b->classname);
+    return strnatcmp($a['classname'], $b['classname']);
 }
 
 $array = array();
 foreach ($response as $data) {
 
-    $array[$data->class->name][] = (object) array(
-                'domain_name' => $data->name,
-                'domain_price' => ($data->is_action) ? $data->price_action : $data->price,
-                'original_price' => $data->price,
-                'classname' => $data->class->name,
-                'is_action' => $data->is_action,
-                'action_comment' => $data->action_comment
-    );
+    $array[$data['class']['name']][] = [
+                'domain_name' => $data['name'],
+                'domain_price' => ($data['is_action']) ? $data['price_action'] : $data['price'],
+                'original_price' => $data['price'],
+                'classname' => $data['class']['name'],
+                'is_action' => $data['is_action'],
+                'action_comment' => $data['action_comment']
+    ];
 }
 ?>
 
@@ -106,28 +106,28 @@ $form = ActiveForm::begin();
                     $i++;
                     ?>
 
-                    <td class="<?= ($row->is_action) ? 'bg-danger' : ''; ?> text-left">
+                    <td class="<?= ($row['is_action']) ? 'bg-light' : ''; ?> text-left">
                         <?php
                         if ($model->domain) {
-                            $checked = (in_array($row->domain_name, $model->domain)) ? true : false;
+                            $checked = (in_array($row['domain_name'], $model->domain)) ? true : false;
                         } else {
                             $checked = false;
                         }
-                        echo Html::checkbox('DomainCheckForm[domain][]', $checked, ['value' => $row->domain_name]);
+                        echo Html::checkbox('DomainCheckForm[domain][]', $checked, ['value' => $row['domain_name']]);
                         ?>
-                        <b><?= $row->domain_name ?></b> 
-                        <?php if ($row->is_action) { ?>
-                            <i class="icon-discount hint_popup text-info" data-toggle="hover" data-placement="right" data-trigger="hover" data-html="true" title="Скидка на <?= $row->domain_name; ?>" data-content="<?= $row->action_comment ?>"></i>
+                        <b><?= $row['domain_name'] ?></b>
+                        <?php if ($row['is_action']) { ?>
+                            <i class="icon-discount hint_popup text-info" data-toggle="hover" data-placement="right" data-trigger="hover" data-html="true" title="Скидка на <?= $row['domain_name']; ?>" data-content="<?= $row['action_comment'] ?>"></i>
 
                         <?php } ?>
 
                     </td>
-                    <td class="<?= ($row->is_action) ? 'bg-danger' : ''; ?> text-center" style="width:10%;">
-                        <?php if ($row->is_action) { ?>
-                        <span class="text-success"><?= $row->domain_price ?> грн.</span><br/>
-                            <small class="text-danger"><span style="text-decoration: line-through;"><?= $row->original_price ?></span> грн.</small>
+                    <td class="<?= ($row['is_action']) ? 'bg-light' : ''; ?> text-center" style="width:10%;">
+                        <?php if ($row['is_action']) { ?>
+                        <span class="text-success"><?= $row['domain_price'] ?> грн.</span><br/>
+                            <small class="text-danger"><span style="text-decoration: line-through;"><?= $row['original_price'] ?></span> грн.</small>
                         <?php } else { ?>
-                            <span class="text-success"><?= $row->original_price ?> грн.</span>
+                            <span class="text-success"><?= $row['original_price'] ?> грн.</span>
                         <?php } ?>
 
                     </td>

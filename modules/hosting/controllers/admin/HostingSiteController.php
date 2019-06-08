@@ -18,15 +18,15 @@ class HostingSiteController extends CommonController {
         if ($api->response['status'] == 'success') {
             return $this->render('info', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
     public function actionInfo() {
         $api = new Api('hosting_site', 'info');
-        if ($api->response->status == 'success') {
-            return $this->render('info', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('info', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
     
@@ -42,8 +42,8 @@ class HostingSiteController extends CommonController {
 
             $api = new Api('hosting_site', 'host_create', $params);
 
-            if ($api->response->status == 'success') {
-                $response = $api->response->data;
+            if ($api->response['status'] == 'success') {
+                $response = $api->response['data'];
                 Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_HOST_CREATE', [
                             'site' => $model->site,
                             'subdomain' => $model->subdomain,

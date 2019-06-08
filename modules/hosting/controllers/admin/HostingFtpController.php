@@ -15,7 +15,7 @@ class HostingFtpController extends CommonController {
 
     /**
      * Возвращает информацию о FTP-пользователях.
-     * @return type
+     * @return string
      * @throws Exception
      */
     public function actionIndex() {
@@ -27,11 +27,11 @@ class HostingFtpController extends CommonController {
         $response = false;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $api = new Api('hosting_ftp', 'info', ['account' => $model->account]);
-            if ($api->response->status == 'success') {
-                $response = $api->response->data;
+            if ($api->response['status'] == 'success') {
+                $response = $api->response['data'];
             } else {
-                Yii::$app->session->setFlash('danger', $api->response->message);
-                $model->addError('account', $api->response->message);
+                Yii::$app->session->setFlash('danger', $api->response['message']);
+                $model->addError('account', $api->response['message']);
             }
         }
         return $this->render('index', ['model' => $model, 'response' => $response]);
@@ -39,7 +39,7 @@ class HostingFtpController extends CommonController {
 
     /**
      * Создание нового FTP-пользователя.
-     * @return type
+     * @return string
      */
     public function actionCreate() {
 
@@ -58,11 +58,11 @@ class HostingFtpController extends CommonController {
                 'homedir' => $model->homedir,
                 'readonly' => $model->readonly,
             ]);
-            if ($api->response->status == 'success') {
-                $response = $api->response->data;
+            if ($api->response['status'] == 'success') {
+                $response = $api->response['data'];
             } else {
-                Yii::$app->session->setFlash('danger', $api->response->message);
-                $model->addError('account', $api->response->message);
+                Yii::$app->session->setFlash('danger', $api->response['message']);
+                $model->addError('account', $api->response['message']);
             }
         }
         return $this->render('create', ['model' => $model, 'response' => $response]);
@@ -77,10 +77,10 @@ class HostingFtpController extends CommonController {
             'account' => Yii::$app->request->get('account'),
             'ftp' => Yii::$app->request->get('ftp'),
         ]);
-        if ($api->response->status == 'success') {
+        if ($api->response['status'] == 'success') {
             Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_FTP_DELETE', ['ftp' => Yii::$app->request->get('ftp')]));
         } else {
-            Yii::$app->session->setFlash('danger', $api->response->message);
+            Yii::$app->session->setFlash('danger', $api->response['message']);
         }
         return $this->redirect(['/admin/hosting/hostingftp/info']);
     }
@@ -104,12 +104,12 @@ class HostingFtpController extends CommonController {
                 'active' => $model->active,
                 'web_ftp' => $model->web_ftp,
             ]);
-            if ($api->response->status == 'success') {
-                $response = $api->response->data;
+            if ($api->response['status'] == 'success') {
+                $response = $api->response['data'];
                 Yii::$app->session->setFlash('success', Yii::t('app','SUCCESS_UPDATE'));
             } else {
-                Yii::$app->session->setFlash('danger', $api->response->message);
-                $model->addError('account', $api->response->message);
+                Yii::$app->session->setFlash('danger', $api->response['message']);
+                $model->addError('account', $api->response['message']);
             }
         }
         return $this->render('access_edit', ['model' => $model, 'response' => $response]);

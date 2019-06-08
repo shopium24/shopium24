@@ -15,10 +15,10 @@ class HostingMailboxController extends CommonController {
             'url' => ['admin/hosting/hosting-mailbox/create']
         ];
         $api = new Api('hosting_mailbox', 'info');
-        if ($api->response->status == 'success') {
-            return $this->render('index', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('index', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 
@@ -42,8 +42,8 @@ class HostingMailboxController extends CommonController {
             }
 
             $api = new Api('hosting_mailbox', 'create', $params);
-            if ($api->response->status == 'success') {
-                $response = $api->response->data;
+            if ($api->response['status'] == 'success') {
+                $response = $api->response['data'];
                 Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_CREATE'));
             }
         }
@@ -94,8 +94,8 @@ class HostingMailboxController extends CommonController {
 
                 $api = new Api('hosting_mailbox', 'edit', $params);
 
-                if ($api->response->status == 'success') {
-                    $response = $api->response->data;
+                if ($api->response['status'] == 'success') {
+                    $response = $api->response['data'];
                     Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_EDIT',['email'=>$model->mailbox]));
                 }
             }
@@ -111,7 +111,7 @@ class HostingMailboxController extends CommonController {
             $api = new Api('hosting_mailbox', 'delete', [
                 'mailbox' => Yii::$app->request->get('email'),
             ]);
-            if ($api->response->status == 'success') {
+            if ($api->response['status'] == 'success') {
                 Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_DELETE', ['email' => Yii::$app->request->get('email')]));
             } else {
                 Yii::$app->session->setFlash('danger', 'error databse_create');
@@ -125,7 +125,7 @@ class HostingMailboxController extends CommonController {
             $api = new Api('hosting_mailbox', 'clear', [
                 'mailbox' => Yii::$app->request->get('email'),
             ]);
-            if ($api->response->status == 'success') {
+            if ($api->response['status'] == 'success') {
                 Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_CLEAR', ['email' => Yii::$app->request->get('email')]));
             } else {
                 Yii::$app->session->setFlash('danger', 'error databse_create');

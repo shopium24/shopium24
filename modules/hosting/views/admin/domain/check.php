@@ -43,9 +43,9 @@ $form = ActiveForm::begin();
 						<?php foreach ($checkData as $d => $result) { ?>
 							<tr>
 								<td><?= $d ?></td>
-								<td class="text-center"><?php echo $result[0]->available ? '<span class="badge badge-success">доступен</span>' : '<span class="badge badge-secondary">не доступен</span>'; ?></td>
-								<td class="text-center"><?php echo (isset($result[0]->reason)) ? '<span class="text-danger">' . $result[0]->reason . '<span>' : '---'; ?></td>
-								<td class="text-center"><?php echo $this->context->getReasonCode($result[0]); ?></td>
+								<td class="text-center"><?php echo $result[0]['available'] ? '<span class="badge badge-success">доступен</span>' : '<span class="badge badge-secondary">не доступен</span>'; ?></td>
+								<td class="text-center"><?php echo (isset($result[0]['reason'])) ? '<span class="text-danger">' . $result[0]['reason'] . '<span>' : '---'; ?></td>
+								<td class="text-center"><?php echo $api->reasonCode($result[0]); ?></td>
 								</tr>
 						<?php } ?>
 					</table>

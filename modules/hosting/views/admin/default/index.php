@@ -2,15 +2,15 @@
 
 use panix\engine\Html;
 
-echo Html::a('hosting_quota', ['/admin/hosting/hostingquota'], ['class' => 'btn btn-default']);
-echo Html::a('hosting_ftp', ['/admin/hosting/hostingftp'], ['class' => 'btn btn-default']);
-echo Html::a('hosting_database', ['/admin/hosting/hostingdatabase'], ['class' => 'btn btn-default']);
-echo Html::a('hosting_mailbox', ['/admin/hosting/hostingmailbox'], ['class' => 'btn btn-default']);
-echo Html::a('hosting_site', ['/admin/hosting/hostingsite'], ['class' => 'btn btn-default']);
-echo Html::a('hosting_account', ['/admin/hosting/hostingaccount'], ['class' => 'btn btn-default']);
-echo Html::a('hosting_log', ['/admin/hosting/hostinglog'], ['class' => 'btn btn-default']);
-echo Html::a('domain', ['/admin/hosting/domain'], ['class' => 'btn btn-default']);
-echo Html::a('billing', ['/admin/hosting/billing'], ['class' => 'btn btn-default']);
+echo Html::a('hosting_quota', ['/admin/hosting/hosting-quota'], ['class' => 'btn btn-secondary']);
+echo Html::a('hosting_ftp', ['/admin/hosting/hosting-ftp'], ['class' => 'btn btn-secondary']);
+echo Html::a('hosting_database', ['/admin/hosting/hosting-database'], ['class' => 'btn btn-secondary']);
+echo Html::a('hosting_mailbox', ['/admin/hosting/hosting-mailbox'], ['class' => 'btn btn-secondary']);
+echo Html::a('hosting_site', ['/admin/hosting/hosting-site'], ['class' => 'btn btn-secondary']);
+echo Html::a('hosting_account', ['/admin/hosting/hosting-account'], ['class' => 'btn btn-secondary']);
+echo Html::a('hosting_log', ['/admin/hosting/hosting-log'], ['class' => 'btn btn-secondary']);
+echo Html::a('domain', ['/admin/hosting/domain'], ['class' => 'btn btn-secondary']);
+echo Html::a('billing', ['/admin/hosting/billing'], ['class' => 'btn btn-secondary']);
 echo Html::a('settings', ['/admin/hosting/settings'], ['class' => 'btn btn-success']);
 
 
@@ -19,7 +19,7 @@ echo Html::a('test #','#');
 echo '<br>';
 echo Html::a('test array',['http://adtest']);
 echo '<br>';
-echo Html::a('test http','http://corner-cms.com');
+echo Html::a('test http','http://pixelion.com.ua');
 echo '<br>';
 echo Html::a('test http addoptions "rel"','http://app2',['test'=>'dsa']);
 echo '<br>';

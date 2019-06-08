@@ -14,18 +14,18 @@ class HostingLogController extends CommonController {
     }
 
     public function actionDates() {
-        $api = new Api('hosting_log', 'dates', ['type' => 'ftp', 'host' => 'corner-cms.com']);
-        if ($api->response->status == 'success') {
-            return $this->render('dates', ['response' => $api->response->data]);
+        $api = new Api('hosting_log', 'dates', ['type' => 'ftp', 'host' => 'pixelion.com.ua']);
+        if ($api->response['status'] == 'success') {
+            return $this->render('dates', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 
     public function actionView() {
         $api = new Api('hosting_log', 'view', [
             'type' => 'nginx',
-            'host' => 'corner-cms.com',
+            'host' => 'pixelion.com.ua',
             'rows_per_page' => 50,
             'page' => 2,
             /*'dtime' => [
@@ -35,10 +35,10 @@ class HostingLogController extends CommonController {
             ]*/
         ]);
 
-        if ($api->response->status == 'success') {
-            return $this->render('view', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('view', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 

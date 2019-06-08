@@ -20,15 +20,15 @@ class DomainController extends CommonController {
     public function actionCheck() {
         //  $api = new Api('dns_domain', 'check',['stack'=>['corner-cms.com']]);
         $domainList = [];
-        $apiZones = new Api('dns_domain', 'zones', ['available' => 1]);
+        $api = new Api('dns_domain', 'zones', ['available' => 1]);
         //  echo $apiZones->response->data;
 
-        foreach ($apiZones->response->data as $data) {
+        foreach ($api->response['data'] as $data) {
 
-            $domainList[$data->class->name][] = array(
-                'domain_name' => $data->name,
-                'domain_price' => $data->price,
-                'classname' => $data->class->name,
+            $domainList[$data['class']['name']][] = array(
+                'domain_name' => $data['name'],
+                'domain_price' => $data['price'],
+                'classname' => $data['class']['name'],
             );
         }
 
@@ -57,7 +57,7 @@ class DomainController extends CommonController {
                 $api = new Api('dns_domain', 'check', ['stack' => $stackDomain]); //array('stack' => array($model->name . "." . $model->domain))
 
 
-                foreach ($api->response->data as $domain => $data) {
+                foreach ($api->response['data'] as $domain => $data) {
                     $checkData[$domain][] = $data;
                 }
             }
@@ -66,6 +66,7 @@ class DomainController extends CommonController {
 
         return $this->render('check', [
                     'model' => $model,
+                    'api'=>$api,
                     'checkData' => $checkData,
                     'selectOptions' => $selectOptions,
         ]);
@@ -73,10 +74,10 @@ class DomainController extends CommonController {
 
     public function actionInfo() {
         $api = new Api('dns_domain', 'info');
-        if ($api->response->status == 'success') {
-            return $this->render('info', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('info', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 
@@ -97,14 +98,14 @@ class DomainController extends CommonController {
                 }
                 $api = new Api('dns_domain', 'check', ['stack' => $stackDomain]); //array('stack' => array($model->name . "." . $model->domain))
 
-                foreach ($api->response->data as $domain => $data) {
+                foreach ($api->response['data'] as $domain => $data) {
                     $checkData[$domain][] = $data;
                 }
             }
         }
 
         return $this->render('zones', [
-                    'response' => $apiZones->response->data,
+                    'response' => $apiZones->response['data'],
                     'model' => $model,
                     'checkData' => $checkData,
         ]);

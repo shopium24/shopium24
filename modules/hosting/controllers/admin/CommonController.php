@@ -31,6 +31,7 @@ class CommonController extends \panix\engine\controllers\AdminController {
                     'url' => ['/admin/' . $this->module->id]
                 ];
                 $bc[] = Yii::t('hosting/default', $controllerName);
+                $this->pageName=Yii::t('hosting/default', $controllerName);
             } else {
                 $bc[] = [
                     'label' => $this->pageName,
@@ -41,6 +42,7 @@ class CommonController extends \panix\engine\controllers\AdminController {
                     'url' => ['/admin/' . $this->module->id . '/' . $controller]
                 ];
                 $bc[] = Yii::t('hosting/default', $controllerName.'_'.$actionName);
+                $this->pageName=Yii::t('hosting/default', $controllerName.'_'.$actionName);
             }
         }
 

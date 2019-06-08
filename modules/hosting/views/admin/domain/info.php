@@ -17,19 +17,19 @@
         </tr>
         <?php foreach ($response as $data) { ?>
             <tr>
-                <td><?= $data->id; ?></td>
-                <td><?= $data->name; ?></td>
-                <td><?= $data->valid_untill; ?></td>
-                <td><?= $data->owner; ?></td>
-                <td><?= $data->admin_c; ?></td>
-                <td><?= $data->tech_c; ?></td>
-                <td><?= $data->admtools_domain; ?></td>
-                <td><?= $data->redirect_status; ?></td>
-                <td><?= $data->redirect_url; ?></td>
-                <td><?= $data->email_redirect; ?></td>
-                <td><?= $data->email_redirect_active; ?></td>
-                <td><?= $data->parking_page_enabled; ?></td>
-                <td><?= $data->parking_page_content; ?></td>
+                <td><?= $data['id']; ?></td>
+                <td><?= $data['name']; ?></td>
+                <td><?= $data['valid_untill']; ?></td>
+                <td><?= $data['owner']; ?></td>
+                <td><?= $data['admin_c']; ?></td>
+                <td><?= $data['tech_c']; ?></td>
+                <td><?= $data['admtools_domain']; ?></td>
+                <td><?= $data['redirect_status']; ?></td>
+                <td><?= $data['redirect_url']; ?></td>
+                <td><?= $data['email_redirect']; ?></td>
+                <td><?= $data['email_redirect_active']; ?></td>
+                <td><?= $data['parking_page_enabled']; ?></td>
+                <td><?= $data['parking_page_content']; ?></td>
 
             </tr>
         <?php } ?>

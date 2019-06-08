@@ -2,8 +2,8 @@
 
 use panix\engine\Html;
 
-echo Html::a('info', ['/admin/hosting/hosting-quota/info'], ['class' => 'btn btn-default']);
-echo Html::a('used_ftp', ['/admin/hosting/hosting-quota/used-ftp'], ['class' => 'btn btn-default']);
-echo Html::a('used_mysql', ['/admin/hosting/hosting-quota/used-mysql'], ['class' => 'btn btn-default']);
+echo Html::a('info', ['info'], ['class' => 'btn btn-secondary']);
+echo Html::a('used_ftp', ['used-ftp'], ['class' => 'btn btn-secondary']);
+echo Html::a('used_mysql', ['used-mysql'], ['class' => 'btn btn-secondary']);
 
 

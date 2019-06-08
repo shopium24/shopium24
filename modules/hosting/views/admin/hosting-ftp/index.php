@@ -2,12 +2,13 @@
 
 use panix\engine\bootstrap\ActiveForm;
 use panix\engine\Html;
+
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?= Yii::t('hosting/default', 'HOSTINGFTP_INFO') ?></h3>
+<div class="card">
+    <div class="card-header">
+        <h5><?= $this->context->pageName; ?></h5>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'account')->dropDownList($model->getAccounts()); ?>
@@ -20,26 +21,26 @@ use panix\engine\Html;
 
         <?php
         if ($response) {
-            echo Html::a('access-edit', ['/admin/hosting/hostingftp/access-edit', 'account' => $model->account], ['class' => 'btn btn-default']);
+            echo Html::a('access-edit', ['access-edit', 'account' => $model->account], ['class' => 'btn btn-secondary']);
             ?>
             <table class="table table-bordered table-striped">
                 <tr>
-                    <th>ID</th>
-                    <th>Логин </th>
-                    <th>Пароль</th>
-                    <th>Каталог доступа</th>
-                    <th>Только для чтения</th>
-                    <th><?= Yii::t('app', 'OPTIONS'); ?></th>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Логин</th>
+                    <th class="text-center">Пароль</th>
+                    <th class="text-center">Каталог доступа</th>
+                    <th class="text-center">Только для чтения</th>
+                    <th class="text-center"><?= Yii::t('app', 'OPTIONS'); ?></th>
                 </tr>
                 <?php foreach ($response as $data) { ?>
                     <tr>
-                        <td><?= $data->id ?></td>
-                        <td><?= $data->login ?></td>
-                        <td><?= $data->password ?></td>
-                        <td><?= $data->homedir ?></td>
+                        <td class="text-center"><?= $data['id'] ?></td>
+                        <td class="text-center"><?= $data['login'] ?></td>
+                        <td class="text-center"><?= $data['password'] ?></td>
+                        <td><?= (!empty($data['homedir'])) ? $data['homedir'] : 'root'; ?></td>
                         <td class="text-center">
                             <?php
-                            if ($data->readonly) {
+                            if ($data['readonly']) {
                                 $class = 'default';
                                 $text = Yii::t('app', 'YES');
                             } else {
@@ -50,9 +51,10 @@ use panix\engine\Html;
                             <span class="label label-<?= $class ?>"><?= $text ?></span>
                         </td>
                         <td class="text-center">
-                            <?= Html::a(Html::icon('edit'), ['/admin/hosting/hostingftp/create', 'account' => $model->account, 'login' => $data->login], ['class' => 'btn btn-default']); ?>
-                            <?= Html::a(Html::icon('delete'), ['/admin/hosting/hostingftp/delete', 'account' => $model->account, 'ftp' => $data->login], ['class' => 'btn btn-default']); ?>
-
+                            <div class="btn-group btn-group-sm">
+                                <?= Html::a(Html::icon('edit'), ['create', 'account' => $model->account, 'login' => $data['login']], ['class' => 'btn btn-outline-secondary']); ?>
+                                <?= Html::a(Html::icon('delete'), ['delete', 'account' => $model->account, 'ftp' => $data['login']], ['class' => 'btn btn-outline-secondary']); ?>
+                            </div>
                         </td>
                     </tr>
                 <?php } ?>

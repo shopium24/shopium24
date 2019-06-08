@@ -13,28 +13,28 @@ class HostingQuotaController extends CommonController {
 
     public function actionInfo() {
         $api = new Api('hosting_quota', 'info');
-        if ($api->response->status == 'success') {
-            return $this->render('info', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('info', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 
     public function actionUsedFtp() {
         $api = new Api('hosting_quota', 'used_ftp');
-        if ($api->response->status == 'success') {
-            return $this->render('used_ftp', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('used_ftp', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 
     public function actionUsedMysql() {
         $api = new Api('hosting_quota', 'used_mysql');
-        if ($api->response->status == 'success') {
-            return $this->render('used_mysql', ['response' => $api->response->data]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('used_mysql', ['response' => $api->response['data']]);
         } else {
-            throw new Exception($api->response->message);
+            throw new Exception($api->response['message']);
         }
     }
 
