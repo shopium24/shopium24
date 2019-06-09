@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'MAILBOX_LIMITS_COUNT'=>'отправлено <span>{count}</span> из <span>{count2}</span> доступных.',
     'MODULE_NAME' => 'Хостинг API',
     'PLANS' => 'Тарифные планы',
     'SUCCESS_DATABASE_DELETE' => 'База данных <strong>{db}</strong> успешно удалена.',

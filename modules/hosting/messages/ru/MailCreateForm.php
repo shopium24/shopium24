@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'DOMAIN' => 'Домен',
     'MAILBOX' => 'Название почты',
     'PASSWORD' => 'Пароль',
     'ANTISPAM' => 'Антиспам',

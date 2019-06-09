@@ -25,7 +25,7 @@ class MailboxController extends CommonController
         if ($api->response['status'] == 'success') {
             return $this->render('index', [
                 'response' => $api->response['data'],
-                'limits'=>$apiLimits->response
+                'limits' => $apiLimits->response
             ]);
         } else {
             throw new Exception($api->response['message']);
@@ -36,13 +36,15 @@ class MailboxController extends CommonController
     public function actionCreate()
     {
         $model = new MailCreateForm();
+        $model->setScenario('update');
         $response = false;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
-            $params['mailbox'] = $model->mailbox;
+            $params['mailbox'] = $model->mailbox . $model->domain;
             $params['password'] = $model->password;
             $params['type'] = $model->type;
             $params['antispam'] = $model->antispam;
+
             if ($model->autoresponder) {
                 $params['autoresponder']['enabled'] = $model->autoresponder;
                 $params['autoresponder']['title'] = $model->autoresponder_title;
@@ -56,6 +58,8 @@ class MailboxController extends CommonController
             if ($api->response['status'] == 'success') {
                 $response = $api->response['data'];
                 Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_CREATE'));
+            } else {
+                Yii::$app->session->setFlash('danger', $api->response['message']);
             }
         }
         return $this->render('create', [
@@ -69,10 +73,12 @@ class MailboxController extends CommonController
 
         $this->buttons[] = [
             'label' => Yii::t('hosting/default', 'BTN_MAILBOX_CREATE'),
-            'url' => ['create']
+            'url' => ['create'],
+            'options' => ['class' => 'btn btn-success']
         ];
 
         $model = new MailCreateForm();
+
         $response = false;
         $mailbox = Yii::$app->request->get('email');
 
@@ -109,6 +115,8 @@ class MailboxController extends CommonController
                 if ($api->response['status'] == 'success') {
                     $response = $api->response['data'];
                     Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_EDIT', ['email' => $model->mailbox]));
+                } else {
+                    Yii::$app->session->setFlash('danger', $api->response['message']);
                 }
             }
         }
@@ -127,7 +135,7 @@ class MailboxController extends CommonController
             if ($api->response['status'] == 'success') {
                 Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_DELETE', ['email' => Yii::$app->request->get('email')]));
             } else {
-                Yii::$app->session->setFlash('danger', 'error databse_create');
+                Yii::$app->session->setFlash('danger', 'Ошибка уделение почты');
             }
         }
         return $this->redirect(['index']);

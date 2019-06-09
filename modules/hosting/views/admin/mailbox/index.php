@@ -2,16 +2,38 @@
 
 use panix\engine\Html;
 
-?>
-Limits
-<?php
 
-
-print_r($limits['data']);
 print_r($limits['notes']);
 $this->registerJs("$('[data-toggle=\"tooltip\"]').tooltip();");
 ?>
 
+<div class="card">
+    <div class="card-header">
+        <h5>Лимиты</h5>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>Дневной лимит на отправку писем с веб-сервера без авторизации, напр. php-функцией mail()</td>
+                <td>
+                    <?= Yii::t('hosting/default', 'MAILBOX_LIMITS_COUNT', [
+                        'count' => $limits['data']['mail_auth_daily_sent'],
+                        'count2' => $limits['data']['mail_auth_daily_limit']
+                    ]); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Дневной лимит на отправку сообщений посредством SMTP сервера</td>
+                <td>
+                    <?= Yii::t('hosting/default', 'MAILBOX_LIMITS_COUNT', [
+                        'count' => $limits['data']['mail_daily_sent'],
+                        'count2' => $limits['data']['mail_daily_limit']
+                    ]); ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 <div class="card">
     <div class="card-header">

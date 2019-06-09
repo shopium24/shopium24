@@ -4,7 +4,13 @@ use panix\engine\bootstrap\ActiveForm;
 use panix\engine\Html;
 use panix\ext\taginput\TagInput;
 
+/**
+ * @var $model \app\modules\hosting\forms\mailbox\MailCreateForm
+ */
+
 $form = ActiveForm::begin();
+
+
 ?>
 <div class="card">
     <div class="card-header">
@@ -12,16 +18,19 @@ $form = ActiveForm::begin();
     </div>
     <div class="card-body">
         <?php
-        if (Yii::$app->request->get('email')) {
-            echo Yii::$app->request->get('email');
 
-        } else {
+
+        if (!Yii::$app->request->get('email')) {
+            //    echo Yii::$app->request->get('email');
+            //} else {
+            echo $form->field($model, 'domain')->dropDownList($model->getDomains());
             echo $form->field($model, 'mailbox');
         }
         ?>
+
         <?= $form->field($model, 'password')->textInput(['minlength' => 8]); ?>
-        <?= $form->field($model, 'antispam')->dropDownList($model->antispamArray); ?>
-        <?= $form->field($model, 'type')->dropDownList($model->typeArray); ?>
+        <?= $form->field($model, 'antispam')->dropDownList($model->getAntiSpamList()); ?>
+        <?= $form->field($model, 'type')->dropDownList($model->getTypeList()); ?>
         <?=
         $form->field($model, 'forward')
             ->widget(TagInput::class, ['placeholder' => 'E-mail'])
