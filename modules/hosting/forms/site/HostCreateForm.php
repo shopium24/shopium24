@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\hosting\forms\hosting_site;
+namespace app\modules\hosting\forms\site;
 
 use Yii;
 use app\modules\hosting\components\Api;

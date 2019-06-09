@@ -1,10 +1,11 @@
 <?php
 
-namespace app\modules\hosting\forms\hosting_database;
+namespace app\modules\hosting\forms\database;
 
 use Yii;
+use panix\engine\base\Model;
 
-class DatabaseCreateForm extends \panix\engine\base\Model {
+class DatabaseCreateForm extends Model {
 
     protected $module = 'hosting';
     public $name;

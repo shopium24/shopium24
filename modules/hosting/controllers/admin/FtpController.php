@@ -5,11 +5,11 @@ namespace app\modules\hosting\controllers\admin;
 use Yii;
 use yii\base\Exception;
 use app\modules\hosting\components\Api;
-use app\modules\hosting\forms\hosting_ftp\AccountForm;
-use app\modules\hosting\forms\hosting_ftp\CreateFtpForm;
-use app\modules\hosting\forms\hosting_ftp\AccessEditForm;
+use app\modules\hosting\forms\ftp\AccountForm;
+use app\modules\hosting\forms\ftp\CreateFtpForm;
+use app\modules\hosting\forms\ftp\AccessEditForm;
 
-class HostingFtpController extends CommonController {
+class FtpController extends CommonController {
 
 
 
@@ -70,7 +70,7 @@ class HostingFtpController extends CommonController {
 
     /**
      * Удаление FTP-пользователя.
-     * @return redirect
+     * @return \yii\web\Response
      */
     public function actionDelete() {
         $api = new Api('hosting_ftp', 'delete', [
@@ -82,12 +82,12 @@ class HostingFtpController extends CommonController {
         } else {
             Yii::$app->session->setFlash('danger', $api->response['message']);
         }
-        return $this->redirect(['/admin/hosting/hostingftp/info']);
+        return $this->redirect(['index']);
     }
     
     /**
      * Редактирование настроек безопасности FTP.
-     * @return type
+     * @return string
      */
     public function actionAccessEdit() {
         $model = new AccessEditForm();

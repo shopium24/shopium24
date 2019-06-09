@@ -4,10 +4,10 @@ namespace app\modules\hosting\controllers\admin;
 
 use Yii;
 use app\modules\hosting\components\Api;
-use app\modules\hosting\forms\hosting_mailbox\MailCreateForm;
+use app\modules\hosting\forms\mailbox\MailCreateForm;
 use yii\base\Exception;
 
-class HostingMailboxController extends CommonController
+class MailboxController extends CommonController
 {
 
     public function actionIndex()
@@ -130,7 +130,7 @@ class HostingMailboxController extends CommonController
                 Yii::$app->session->setFlash('danger', 'error databse_create');
             }
         }
-        return $this->redirect(['/admin/hosting/hostingmailbox/info']);
+        return $this->redirect(['index']);
     }
 
     public function actionClear()
@@ -145,7 +145,7 @@ class HostingMailboxController extends CommonController
                 Yii::$app->session->setFlash('danger', 'error databse_create');
             }
         }
-        return $this->redirect(['/admin/hosting/hostingmailbox/info']);
+        return $this->redirect(['index']);
     }
 
 }

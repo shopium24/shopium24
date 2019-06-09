@@ -1,11 +1,13 @@
 <?php
 
-namespace app\modules\hosting\forms\hosting_ftp;
+namespace app\modules\hosting\forms\ftp;
 
 use Yii;
 use app\modules\hosting\components\Api;
+use panix\engine\base\Model;
 
-class AccessEditForm extends \panix\engine\base\Model {
+class AccessEditForm extends Model
+{
 
     protected $module = 'hosting';
     public $account;
@@ -13,16 +15,17 @@ class AccessEditForm extends \panix\engine\base\Model {
     public $active;
     public $web_ftp;
 
-    public function init() {
+    public function init()
+    {
         $api = new Api('hosting_ftp', 'access_info', ['account' => $this->account]);
         $ips = [];
         if ($api->response['status'] == 'success') {
-           
-            if(isset($api->response['data']->stack)){
-                foreach($api->response['data']->stack as $stack){
-                     $ips[] = $stack['ip'];
+
+            if (isset($api->response['data']->stack)) {
+                foreach ($api->response['data']->stack as $stack) {
+                    $ips[] = $stack['ip'];
                 }
-                $this->ip = implode(',',$ips);
+                $this->ip = implode(',', $ips);
             }
 
 
@@ -32,7 +35,8 @@ class AccessEditForm extends \panix\engine\base\Model {
         parent::init();
     }
 
-    public function rules() {
+    public function rules()
+    {
         return [
             [['account'], 'required'],
             [['active', 'web_ftp'], 'boolean'],
@@ -41,7 +45,8 @@ class AccessEditForm extends \panix\engine\base\Model {
         ];
     }
 
-    public function getAccounts() {
+    public function getAccounts()
+    {
         $api = new Api('hosting_account', 'info', ['account' => false]);
         $result = [];
         if ($api->response['status'] == 'success') {

@@ -7,7 +7,7 @@ use yii\base\Exception;
 use app\modules\hosting\components\Api;
 
 
-class HostingAccountController extends CommonController {
+class AccountController extends CommonController {
 
     public function actionIndex() {
         if (Yii::$app->request->get('account')) {

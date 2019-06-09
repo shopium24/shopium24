@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\hosting\forms\hosting_site;
+namespace app\modules\hosting\forms\site;
 
 use panix\engine\CMS;
 use Yii;

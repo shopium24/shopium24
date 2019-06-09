@@ -1,23 +1,27 @@
 <?php
 
-namespace app\modules\hosting\forms\hosting_database;
+namespace app\modules\hosting\forms\database;
 
-use Yii;
+use panix\engine\base\Model;
 
-class UserPrivilegesForm extends \panix\engine\base\Model {
+class UserPrivilegesForm extends Model
+{
 
     protected $module = 'hosting';
+
     public $database;
     public $user;
     public $privileges;
 
-    public function rules() {
+    public function rules()
+    {
         return [
             [['database', 'user', 'privileges'], "required"],
         ];
     }
 
-    public function getPrivilegesList() {
+    public function getPrivilegesList()
+    {
         return [
             'select' => 'select',
             'insert' => 'insert',

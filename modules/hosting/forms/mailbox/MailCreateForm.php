@@ -1,12 +1,14 @@
 <?php
 
-namespace app\modules\hosting\forms\hosting_mailbox;
+namespace app\modules\hosting\forms\mailbox;
 
-use Yii;
+use panix\engine\base\Model;
 
-class MailCreateForm extends \panix\engine\base\Model {
+class MailCreateForm extends Model
+{
 
     protected $module = 'hosting';
+
     public $mailbox;
     public $password;
     public $type = 'mailbox';
@@ -16,7 +18,8 @@ class MailCreateForm extends \panix\engine\base\Model {
     public $autoresponder_title;
     public $autoresponder_text;
 
-    public function rules() {
+    public function rules()
+    {
         return [
             [['mailbox', 'password'], "required"],
             //['type', 'in', 'range' => $this->getTypeArray()],
@@ -28,7 +31,8 @@ class MailCreateForm extends \panix\engine\base\Model {
         ];
     }
 
-    public function getTypeArray() {
+    public function getTypeArray()
+    {
         return [
             'mailbox' => 'mailbox - стандартный почтовый ящик',
             'redirect' => 'redirect - вся почта будет перенаправляться с новосозданного ящика на почтовые ящики',
@@ -36,7 +40,8 @@ class MailCreateForm extends \panix\engine\base\Model {
         ];
     }
 
-    public function getAntispamArray() {
+    public function getAntispamArray()
+    {
         return [
             'off' => 'off - антиспам отключен',
             'low' => 'low - низкий уровень защиты от спама',

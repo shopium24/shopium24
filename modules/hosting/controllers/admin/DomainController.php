@@ -182,13 +182,7 @@ class DomainController extends CommonController
         }*/
 
 
-
-$model = new DnsNsEditForm();
-
-
-
-
-
+        $model = new DnsNsEditForm();
 
 
         $api = new Api('dns_ns', 'info', ['domain' => $domain]);
@@ -196,8 +190,8 @@ $model = new DnsNsEditForm();
         if ($api->response['status'] == 'success') {
             return $this->render('dns_ns', [
                 'response' => $api->response,
-                'dns_ns_edit'=>$api_dns_ns_edit,
-                'model'=>$model
+                'dns_ns_edit' => $api_dns_ns_edit,
+                'model' => $model
             ]);
         } else {
             throw new Exception($api->response['message']);

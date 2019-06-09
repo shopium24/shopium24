@@ -54,38 +54,43 @@ class Module extends \panix\engine\WebModule {
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_FTP'),
-                        'url' =>['/admin/hosting/hosting-ftp'],
+                        'url' =>['/admin/hosting/ftp'],
                         'icon' => 'folder-open',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_MAILBOX'),
-                        'url' =>['/admin/hosting/hosting-mailbox'],
+                        'url' =>['/admin/hosting/mailbox'],
                         'icon' => 'envelope',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_LOG'),
-                        'url' =>['/admin/hosting/hosting-log'],
+                        'url' =>['/admin/hosting/log'],
                         'icon' => 'log',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_QUOTA'),
-                        'url' =>['/admin/hosting/hosting-quota'],
+                        'url' =>['/admin/hosting/quota'],
                         'icon' => $this->icon,
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_DATABASE'),
-                        'url' =>['/admin/hosting/hosting-database'],
+                        'url' =>['/admin/hosting/database'],
                         'icon' => 'database',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_ACCOUNT'),
-                        'url' =>['/admin/hosting/hosting-account'],
+                        'url' =>['/admin/hosting/account'],
                         'icon' => 'database',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'HOSTING_SITE'),
-                        'url' =>['/admin/hosting/hosting-site'],
+                        'url' =>['/admin/hosting/site'],
                         'icon' => 'database',
+                    ],
+                    [
+                        'label' => Yii::t('app', 'SETTINGS'),
+                        'url' =>['/admin/hosting/settings'],
+                        'icon' => 'settings',
                     ],
                 ],
             ]

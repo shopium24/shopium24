@@ -33,7 +33,7 @@ $form = ActiveForm::begin();
             <tr>
                 <td><?= $response['user']['login'] ?></td>
                 <td><?= $response['user']['password'] ?></td>
-                <td><?= Html::a('delete', ['/admin/hosting/hostingdatabase/database-delete', 'database' => $response['user']['login']]) ?></td>
+                <td><?= Html::a('delete', ['database-delete', 'database' => $response['user']['login']]) ?></td>
             </tr>
         </table>
     <?php } ?>

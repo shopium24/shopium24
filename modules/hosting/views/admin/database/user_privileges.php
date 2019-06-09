@@ -10,9 +10,7 @@ $form = ActiveForm::begin();
         <h5><?= $this->context->pageName; ?></h5>
     </div>
     <div class="card-body">
-        <?= $form->field($model, 'database')->textInput() ?>
-        <?= $form->field($model, 'user')->textInput() ?>
-        <?= $form->field($model, 'privileges')->dropDownList($model->getPrivilegesList(), ['multiple' => 'multiple']); ?>
+        <?= $form->field($model, 'privileges')->checkboxList($model->getPrivilegesList(), ['multiple' => 'multiple']); ?>
     </div>
     <div class="card-footer text-center">
         <?= Html::submitButton(Yii::t('app', 'SAVE'), ['class' => 'btn btn-success']) ?>

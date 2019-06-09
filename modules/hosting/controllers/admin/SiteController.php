@@ -6,10 +6,10 @@ namespace app\modules\hosting\controllers\admin;
 use Yii;
 use yii\base\Exception;
 use app\modules\hosting\components\Api;
-use app\modules\hosting\forms\hosting_site\HostCreateForm;
-use app\modules\hosting\forms\hosting_site\HostSiteConfigWSForm;
+use app\modules\hosting\forms\site\HostCreateForm;
+use app\modules\hosting\forms\site\HostSiteConfigWSForm;
 
-class HostingSiteController extends CommonController
+class SiteController extends CommonController
 {
 
     public function actionIndex()
