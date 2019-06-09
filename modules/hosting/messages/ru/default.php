@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'MAILBOX_LIMITS_COUNT'=>'отправлено <span>{count}</span> из <span>{count2}</span> доступных.',
+    'MAILBOX_LIMITS_COUNT' => 'отправлено <strong>{count}</strong> из <strong>{count2}</strong> доступных.',
     'MODULE_NAME' => 'Хостинг API',
     'PLANS' => 'Тарифные планы',
     'SUCCESS_DATABASE_DELETE' => 'База данных <strong>{db}</strong> успешно удалена.',
@@ -18,7 +18,7 @@ return [
     'BTN_DATABASE_CREATE' => 'Добавить базу данных',
     'BTN_FTP_CREATE' => 'Добавить FTP пользователя',
     'BTN_MAILBOX_CREATE' => 'Добавить почту',
-    'BTN_DOMAIN_DNS_RECORD_RESTORE'=>'Восстановить по-умолчанию',
+    'BTN_DOMAIN_DNS_RECORD_RESTORE' => 'Восстановить по-умолчанию',
     //breadcrumbs
     'CHECK' => 'Проверить',
     'DATABASE' => 'База данных',
@@ -35,14 +35,14 @@ return [
     'DOMAIN_AVAILABLE_FREE' => 'свободен',
     'DOMAIN_AVAILABLE_BUSY' => 'занят',
     'DOMAINS' => 'Домены',
-    'DOMAIN_DNS_NS'=>'NS сервера домена',
-    'DOMAIN_DNS_NS2'=>'NS сервера домена {domain}',
+    'DOMAIN_DNS_NS' => 'NS сервера домена',
+    'DOMAIN_DNS_NS2' => 'NS сервера домена {domain}',
     'DOMAIN_ZONES' => 'Список DNS зон с ценами на них',
     'DOMAIN_INFO' => 'Список доменов, к которым у Вас открыт доступ',
     'QUOTA' => 'Квоты хостинг аккаунтов',
     'QUOTA_INFO' => 'Информацию о квотах',
-    'QUOTA_USED_FTP' => 'Информацию о дисковом пространстве FTP',
-    'QUOTA_USED_MYSQL' => 'Информацию о дисковом пространстве MySQL',
+    'QUOTA_FTP' => 'Дисковом пространстве FTP',
+    'QUOTA_MYSQL' => 'Дисковом пространстве MySQL',
     'MAILBOX' => 'Почтовые ящики',
     'MAILBOX_INFO' => 'Информацию о почтовых ящиках аккаунта',
     'MAILBOX_CREATE' => 'Создание нового почтового ящика',

@@ -1,17 +1,23 @@
 <?php
+
 namespace app\modules\hosting;
+
 use Yii;
-class Module extends \panix\engine\WebModule {
 
-    public $icon ='seo-monitor';
+class Module extends \panix\engine\WebModule
+{
+
+    public $icon = 'seo-monitor';
 
 
-    public function afterInstall() {
+    public function afterInstall()
+    {
         Yii::$app->db->import($this->id);
         return parent::afterInstall();
     }
 
-    public function afterUninstall() {
+    public function afterUninstall()
+    {
         //Удаляем таблицу модуля
         Yii::$app->db->createCommand()->dropTable(Redirects::tableName());
         Yii::$app->db->createCommand()->dropTable(SeoMain::tableName());
@@ -19,7 +25,9 @@ class Module extends \panix\engine\WebModule {
         Yii::$app->db->createCommand()->dropTable(SeoUrl::tableName());
         return parent::afterUninstall();
     }
-    public function getInfo() {
+
+    public function getInfo()
+    {
         return [
             'label' => Yii::t('hosting/default', 'MODULE_NAME'),
             'author' => 'andrew.panix@gmail.com',
@@ -30,72 +38,69 @@ class Module extends \panix\engine\WebModule {
         ];
     }
 
-    public function getAdminMenu() {
+    public function getAdminMenu()
+    {
         return [
             'hosting' => [
                 'label' => Yii::t('hosting/default', 'MODULE_NAME'),
-                'url' =>'#',
-                'icon'=>'server',
-                'items' =>[
-                    [
-                        'label' => Yii::t('hosting/default', 'MODULE_NAME'),
-                        'url' =>['/admin/hosting'],
-                        'icon' => $this->icon,
-                    ],
+                'url' => '#',
+                'icon' => 'server',
+                'items' => [
                     [
                         'label' => Yii::t('hosting/default', 'DOMAIN'),
-                        'url' =>['/admin/hosting/domain'],
+                        'url' => ['/admin/hosting/domain'],
                         'icon' => $this->icon,
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'BILLING'),
-                        'url' =>['/admin/hosting/billing'],
+                        'url' => ['/admin/hosting/billing'],
                         'icon' => 'cash-money',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'FTP'),
-                        'url' =>['/admin/hosting/ftp'],
+                        'url' => ['/admin/hosting/ftp'],
                         'icon' => 'folder-open',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'MAILBOX'),
-                        'url' =>['/admin/hosting/mailbox'],
+                        'url' => ['/admin/hosting/mailbox'],
                         'icon' => 'envelope',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'LOG'),
-                        'url' =>['/admin/hosting/log'],
+                        'url' => ['/admin/hosting/log'],
                         'icon' => 'log',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'QUOTA'),
-                        'url' =>['/admin/hosting/quota'],
+                        'url' => ['/admin/hosting/quota'],
                         'icon' => $this->icon,
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'DATABASE'),
-                        'url' =>['/admin/hosting/database'],
+                        'url' => ['/admin/hosting/database'],
                         'icon' => 'database',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'ACCOUNT'),
-                        'url' =>['/admin/hosting/account'],
+                        'url' => ['/admin/hosting/account'],
                         'icon' => 'database',
                     ],
                     [
                         'label' => Yii::t('hosting/default', 'SITE'),
-                        'url' =>['/admin/hosting/site'],
+                        'url' => ['/admin/hosting/site'],
                         'icon' => 'database',
                     ],
                     [
                         'label' => Yii::t('app', 'SETTINGS'),
-                        'url' =>['/admin/hosting/settings'],
+                        'url' => ['/admin/hosting/settings'],
                         'icon' => 'settings',
                     ],
                 ],
             ]
         ];
     }
+
     public function getAdminSidebar()
     {
         return (new \panix\mod\admin\widgets\sidebar\BackendNav)->findMenu($this->id)['items'];
