@@ -1,3 +1,4 @@
+<?php if($response){ ?>
 <table class="table table-bordered table-striped">
     <tr>
         <th>Домен</th>
@@ -10,3 +11,4 @@
         </tr>
     <?php } ?>
 </table>
+<?php } ?>
