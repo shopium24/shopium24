@@ -18,7 +18,6 @@ use yii\widgets\Breadcrumbs;
     <body>
     <?php $this->beginBody() ?>
         <?php echo $this->render('partials/header'); ?>
-        <?php echo $this->render('partials/gallery'); ?>
        <?= $content ?>
         <?php echo $this->render('partials/footer'); ?>
         <?php $this->endBody() ?>
