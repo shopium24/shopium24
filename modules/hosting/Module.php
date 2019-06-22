@@ -47,6 +47,11 @@ class Module extends \panix\engine\WebModule
                 'icon' => 'server',
                 'items' => [
                     [
+                        'label' => Yii::t('hosting/default', 'ACCOUNTS'),
+                        'url' => ['/admin/hosting/accounts'],
+                        'icon' => 'user',
+                    ],
+                    [
                         'label' => Yii::t('hosting/default', 'DOMAIN'),
                         'url' => ['/admin/hosting/domain'],
                         'icon' => $this->icon,
