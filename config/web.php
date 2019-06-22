@@ -1,7 +1,5 @@
 <?php
 
-use panix\engine\pdf\Pdf;
-
 Yii::setAlias('@console', dirname(__DIR__) . '/../console/web');
 
 $config = [
@@ -320,13 +318,6 @@ $config = [
         'stats' => ['class' => 'panix\mod\stats\components\Stats'],
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         'webcontrol' => ['class' => 'panix\engine\widgets\webcontrol\WebInlineControl'],
-        'pdf' => [
-            'class' => Pdf::class,
-            'format' => Pdf::FORMAT_A4,
-            'orientation' => Pdf::ORIENT_PORTRAIT,
-            'destination' => Pdf::DEST_BROWSER,
-            'mode' => Pdf::MODE_UTF8,
-        ],
         'view' => [
             'class' => \panix\mod\plugins\components\View::class,
             'as Layout' => [
