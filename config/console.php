@@ -39,6 +39,7 @@ return [
         'sitemap' => ['class' => 'panix\mod\sitemap\Module'],
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
         'seo' => ['class' => 'panix\mod\seo\Module'],
+        'plans' => ['class' => 'shopium24\mod\plans\Module'],
         //'forum' => ['class' => 'panix\mod\forum\Module'],
     ],
     'controllerMap' => [

@@ -1,6 +1,5 @@
 <?php
 
-use panix\engine\WebApplication;
 
 error_reporting(E_ALL);
 //Timezone
@@ -23,10 +22,13 @@ require(__DIR__ . '/../vendor/autoload.php');
 //$config = require(__DIR__ . '/config/web.php');
 
 
-$config = require __DIR__ . '/../config/web.php';
+$config = yii\helpers\ArrayHelper::merge(
+    require __DIR__ . '/../config/common.php',
+    require __DIR__ . '/../config/web.php'
+);
 
 //use yii\web\Application;
 
 
-$app = new WebApplication($config);
+$app = new \panix\engine\WebApplication($config);
 $app->run();

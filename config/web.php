@@ -20,32 +20,7 @@ $config = [
         'main' => 'panix\engine\controllers\WebController',
     ],
     'modules' => [
-        /*'telegram' => [
-            'class' => 'panix\mod\telegram\Module',
-            'hook_url' => 'https://yii2.pixelion.com.ua/telegram/default/hook', // must be https! (if not prettyUrl https://yourhost.com/index.php?r=telegram/default/hook)
-            // 'db' => 'db2', //db file name from config dir
-             'userCommandsPath' => '@telegram/commands/UserCommands',
-            // 'timeBeforeResetChatHandler' => 60
-        ],*/
 
-        //'docs' => ['class' => 'panix\mod\docs\Module'],
-
-        //'stats' => ['class' => 'panix\mod\stats\Module'],
-        //'hosting' => ['class' => 'app\modules\hosting\Module'],
-/*
-
-
-          'forum' => ['class' => 'panix\mod\forum\Module'],
-          // 'portfolio' => ['class' => 'app\modules\portfolio\Module'],
-          'images' => [
-          'class' => 'panix\mod\images\Module',
-          'imagesStorePath' => 'uploads/store', //path to origin images
-          'imagesCachePath' => 'uploads/cache', //path to resized copies
-          'graphicsLibrary' => 'GD', //but really its better to use 'Imagick'
-          'placeHolderPath' => '@webroot/uploads/watermark.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
-          'imageCompressionQuality' => 100, // Optional. Default value is 85.
-          'waterMark' => '@webroot/uploads/watermark.png'
-          ], */
     ],
     'components' => [
         'plugins' => [
@@ -59,12 +34,6 @@ $config = [
                 '<a[^>]*>' => '<\/a>',
                // '<div class="content[^>]*>' => '<\/div>',
             ]
-        ],
-        'sphinx' => [
-            'class' => 'yii\sphinx\Connection',
-            'dsn' => 'mysql:host=127.0.0.1;port=9306;',
-            'username' => '',
-            'password' => '',
         ],
         'fcm' => [
             'class' => 'understeam\fcm\Client',
@@ -135,7 +104,7 @@ if (YII_ENV_DEV) {
         return strtr('<a href="phpstorm://open?url={file}&line={line}">{file}:{line}</a>', ['{file}' => $filePath]);
     };
     $config['modules']['debug']['panels'] = [
-        'queue' => \yii\queue\debug\Panel::class,
+       // 'queue' => \yii\queue\debug\Panel::class,
     ];
     //$config['modules']['debug']['dataPath'] = '@runtime/debug';
     //$config['bootstrap'][] = 'gii';
