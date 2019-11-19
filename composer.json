@@ -31,8 +31,8 @@
         "panix/mod-sitemap": "dev-master",
         "panix/mod-pages": "dev-master",
         "nelexa/zip": "dev-master",
-        "panix/mod-contacts": "dev-master",
-        "panix/mod-docs": "dev-master"
+        "panix/mod-docs": "dev-master",
+        "panix/mod-contacts": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2",
