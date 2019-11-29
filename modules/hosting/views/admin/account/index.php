@@ -25,7 +25,7 @@ use panix\engine\CMS;
             </tr>
             <?php foreach ($response as $id => $data) { ?>
                 <tr>
-                    <td class="text-center"><?= Html::a($data['login'], ['/admin/hosting/hosting-account/info', 'account' => $data['login']]); ?>
+                    <td class="text-center"><?= Html::a($data['login'], ['info', 'account' => $data['login']]); ?>
                         [<?= $data['id']; ?>]
                     </td>
                     <td class="text-center"><span class="badge badge-secondary"><?= $data['valid_untill']; ?></span>
@@ -49,13 +49,13 @@ use panix\engine\CMS;
                     <td>
 
                         <div>Name: <?= $data['server']['name'] ?></div>
-                        <div>ip: <?= CMS::ip($data['server']['ip']); ?></div>
+                        <div>ip: <?= $data['server']['ip']; ?></div>
                         <div>is_using_proxy: <?= $data['server']['is_using_proxy'] ?></div>
                         <div>is_extra_ip: <?= $data['server']['is_extra_ip'] ?></div>
                         <div>country: <?= $data['server']['country'] ?></div>
                     </td>
                     <td>
-                        <div>ipv4: <?= CMS::ip($data['proxy']['ipv4']) ?></div>
+                        <div>ipv4: <?= $data['proxy']['ipv4'] ?></div>
                         <div>ipv6: <?= $data['proxy']['ipv6'] ?></div>
                     </td>
                     <td>

@@ -36,7 +36,7 @@ class MailboxController extends CommonController
     public function actionCreate()
     {
         $model = new MailCreateForm();
-        $model->setScenario('update');
+
         $response = false;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
@@ -55,6 +55,10 @@ class MailboxController extends CommonController
             }
 
             $api = new Api('hosting_mailbox', 'create', $params);
+
+
+
+
             if ($api->response['status'] == 'success') {
                 $response = $api->response['data'];
                 Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_MAILBOX_CREATE'));

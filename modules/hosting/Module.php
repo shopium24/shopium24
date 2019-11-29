@@ -47,8 +47,8 @@ class Module extends \panix\engine\WebModule
                 'icon' => 'server',
                 'items' => [
                     [
-                        'label' => Yii::t('hosting/default', 'ACCOUNTS'),
-                        'url' => ['/admin/hosting/accounts'],
+                        'label' => Yii::t('hosting/default', 'ACCOUNT'),
+                        'url' => ['/admin/hosting/account'],
                         'icon' => 'user',
                     ],
                     [
@@ -84,11 +84,6 @@ class Module extends \panix\engine\WebModule
                     [
                         'label' => Yii::t('hosting/default', 'DATABASE'),
                         'url' => ['/admin/hosting/database'],
-                        'icon' => 'database',
-                    ],
-                    [
-                        'label' => Yii::t('hosting/default', 'ACCOUNT'),
-                        'url' => ['/admin/hosting/account'],
                         'icon' => 'database',
                     ],
                     [

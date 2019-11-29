@@ -32,7 +32,14 @@ class AccountController extends CommonController {
             throw new Exception($api->response['message']);
         }
     }
-
+    public function actionInfo($account) {
+        $api = new Api('hosting_account', 'info',['account'=>$account]);
+        if ($api->response['status'] == 'success') {
+            return $this->render('info', ['response' => $api->response['data']]);
+        } else {
+            throw new Exception($api->response['message']);
+        }
+    }
     public function actionMigrate() {
         $api = new Api('hosting_account', 'migrate');
         if ($api->response['status'] == 'success') {

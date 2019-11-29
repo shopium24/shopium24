@@ -34,9 +34,10 @@ class SiteController extends CommonController
             'url' => ['host-create'],
             'options' => ['class' => 'btn btn-success']
         ];
-        $api = new Api('hosting_site', 'info',['site'=>'pixelion.com.ua']);
+        $api = new Api('hosting_site', 'info', ['site' => 'pixelion.com.ua']);
         if ($api->response['status'] == 'success') {
-            print_r($api->response['data']);die;
+            print_r($api->response['data']);
+            die;
             return $this->render('index', ['response' => $api->response['data']]);
         } else {
             throw new Exception($api->response['message']);
@@ -94,5 +95,26 @@ class SiteController extends CommonController
             'model' => $model,
             'response' => $response,
         ]);
+    }
+
+    public function actionDelete($site, $subdomain)
+    {
+        if ($subdomain != 'www') {
+            $params['host'] = $subdomain . '.' . $site;
+            $params['file'] = 1;
+            $params['mailbox'] = 1;
+
+            $api = new Api('hosting_site', 'host_delete', $params);
+
+            if ($api->response['status'] == 'success') {
+                Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_SUBDOMAIN_DELETE', [
+                    'site' => $subdomain,
+                    'subdomain' => $site,
+                ]));
+            } else {
+                Yii::$app->session->setFlash('error', $api->response['message']);
+            }
+            $this->redirect(['index']);
+        }
     }
 }

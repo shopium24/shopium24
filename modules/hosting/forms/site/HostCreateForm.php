@@ -24,7 +24,8 @@ class HostCreateForm extends Model {
         $api = new Api('hosting_site', 'info', ['site' => $this->site]);
         if ($api->response['status'] == 'success') {
             $domains = [];
-            foreach ($api->response['data']->{$this->site}->hosts as $subdomain => $data) {
+
+            foreach ($api->response['data'][$this->site]['hosts'] as $subdomain => $data) {
                 $domains[] = $subdomain;
             }
             if (in_array($this->$attribute, $domains)) {

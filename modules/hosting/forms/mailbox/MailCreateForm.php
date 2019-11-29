@@ -23,11 +23,10 @@ class MailCreateForm extends Model
     public function rules()
     {
         return [
-            [['mailbox', 'password'], "required"],
-            [['domain'], "required",'on'=>'create'],
+            [['mailbox', 'password', 'domain'], "required"],
             //['type', 'in', 'range' => $this->getTypeArray()],
             //['antispam', 'in', 'range' => $this->getAntispamArray()],
-            [['autoresponder_text', 'autoresponder_title', 'forward', 'type', 'antispam'], 'string'],
+            [['autoresponder_text', 'autoresponder_title', 'forward', 'type', 'antispam', 'domain'], 'string'],
             [['password'], 'string', 'min' => 8],
             //['mailbox', 'email'],
             ['autoresponder', 'boolean']
@@ -60,7 +59,7 @@ class MailCreateForm extends Model
         $sites = [];
         if ($api->response['status'] == 'success') {
             foreach ($api->response['data'] as $key => $data) {
-                $sites['@'.$data['name']] = '@'.$data['name'];
+                $sites['@' . $data['name']] = '@' . $data['name'];
             }
         }
         return $sites;
