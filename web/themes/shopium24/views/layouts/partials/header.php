@@ -28,10 +28,17 @@ $this->registerJs("
         <div id="navbar" class="navbar-collapse collapse">
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a href="/page/plans" class="nav-link">Цены</a></li>
-                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" href="#" id="drop-service"
-                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Услуги
-                    </a>
+                <li class="nav-item">
+                    <?= Html::a('Цены', ['/page/plans'], ['class' => 'nav-link']) ?>
+                </li>
+                <li class="nav-item dropdown">
+                    <?= Html::a('Услуги', '#', [
+                        'class' => 'dropdown-toggle nav-link',
+                        'data-toggle' => 'dropdown',
+                        'aria-haspopup' => true,
+                        'aria-expanded' => "true"
+                    ]) ?>
+
                     <ul class="dropdown-menu" aria-labelledby="drop-service">
                         <li class="dropdown-item"><?= Html::a('Регистрация доменов', ['/page/domain']) ?></li>
                     </ul>
@@ -39,15 +46,16 @@ $this->registerJs("
                 <li class="nav-item d-none"><a href="#" class="nav-link">Выкуп магазина</a></li>
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle nav-link" href="#" id="dropdown-user"
-                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?= Yii::$app->user->getDisplayName(); ?>
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="true"><?= Yii::$app->user->getDisplayName(); ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-user">
-                        <?php if(Yii::$app->user->isGuest){ ?>
-                            <li class="dropdown-item"><?= Html::a(Yii::t('user/default','LOGIN'), ['/user/login']) ?></li>
-                            <li class="dropdown-item"><?= Html::a(Yii::t('user/default','REGISTER'), ['/user/register']) ?></li>
-                        <?php }else { ?>
-                            <li class="dropdown-item"><?= Html::a(Yii::t('user/default','PROFILE'), ['/user/profile']) ?></li>
-                            <li class="dropdown-item"><?= Html::a(Yii::t('user/default','LOGOUT'), ['/user/logout']) ?></li>
+                        <?php if (Yii::$app->user->isGuest) { ?>
+                            <li class="dropdown-item"><?= Html::a(Yii::t('user/default', 'LOGIN'), ['/user/login']) ?></li>
+                            <li class="dropdown-item"><?= Html::a(Yii::t('user/default', 'REGISTER'), ['/user/register']) ?></li>
+                        <?php } else { ?>
+                            <li class="dropdown-item"><?= Html::a(Yii::t('user/default', 'PROFILE'), ['/user/profile']) ?></li>
+                            <li class="dropdown-item"><?= Html::a(Yii::t('user/default', 'LOGOUT'), ['/user/logout']) ?></li>
                         <?php } ?>
 
                     </ul>
@@ -63,7 +71,7 @@ $this->registerJs("
             <?php } else { ?>
                 <div class="float-right header-contacts text-right">
                     <div class="phone">
-                        <i class="icon-phone"></i><span><?= Html::tel('+380682937379',[],'($2) $3-$4-$5'); ?></span>
+                        <i class="icon-phone"></i><span><?= Html::tel('+380682937379', [], '($2) $3-$4-$5'); ?></span>
                     </div>
                     <div class="email">
                         <i class="icon-envelope"></i><span><?= Html::mailto('support@' . Yii::$app->params['domain']); ?></span>
