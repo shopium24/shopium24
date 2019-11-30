@@ -97,10 +97,10 @@ class SiteController extends CommonController
         ]);
     }
 
-    public function actionDelete($site, $subdomain)
+    public function actionDelete($host)
     {
-        if ($subdomain != 'www') {
-            $params['host'] = $subdomain . '.' . $site;
+        if ($host != 'www') {
+            $params['host'] = $host;
             $params['file'] = 1;
             $params['mailbox'] = 1;
 
@@ -108,8 +108,7 @@ class SiteController extends CommonController
 
             if ($api->response['status'] == 'success') {
                 Yii::$app->session->setFlash('success', Yii::t('hosting/default', 'SUCCESS_SUBDOMAIN_DELETE', [
-                    'site' => $subdomain,
-                    'subdomain' => $site,
+                    'host' => $host,
                 ]));
             } else {
                 Yii::$app->session->setFlash('error', $api->response['message']);
