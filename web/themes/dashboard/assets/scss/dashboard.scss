@@ -13,10 +13,12 @@
   position: absolute;
   right: 0;
 }
+
 code,
-.form-text{
+.form-text {
   font-size: inherit;
 }
+
 /*
 form .form-group input.form-control,
 form .form-group select.form-control,
@@ -107,18 +109,30 @@ a:hover,
 }
 
 /*fix for mobile dropdown */
-.grid-view .table-responsive .dropdown-menu {
-  z-index: 1001;
-}
-
-.grid-view .badge {
-  font-size: 100%;
-  margin: 2px;
-  a {
-    text-decoration: none;
-    font-weight: normal;
-    &:hover {
-      color: #fff;
+.grid-view {
+  .table-responsive .dropdown-menu {
+    z-index: 1001;
+  }
+  .summary {
+    text-align: left;
+    font-size: 12px;
+    margin: .50rem;
+  }
+  .badge {
+    font-size: 100%;
+    margin: 2px;
+    a {
+      text-decoration: none;
+      font-weight: normal;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  .has-error {
+    .badge {
+      position: absolute;
+      z-index: 1;
     }
   }
 }
@@ -182,6 +196,45 @@ a:hover,
 .popover ul {
   margin-left: 15px;
   padding: 0;
+}
+
+.pjax-loader {
+  position: relative;
+  /*&:before{
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    margin: 0 auto;
+    -webkit-animation: loader 1.2s infinite ease-in-out;
+    animation: loader 1.2s infinite ease-in-out;
+  }*/
+  &:before {
+    background-color: rgba(255, 255, 255, 0.5);
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+  &:after {
+    width: 42px;
+    height: 42px;
+    background-color: $color-dark;
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 50%;
+    z-index: 1;
+    margin: 0 auto;
+    -webkit-animation: loader 1.2s infinite ease-in-out;
+    animation: loader 1.2s infinite ease-in-out;
+  }
 }
 
 .common-ajax-loading {
@@ -252,6 +305,7 @@ form .col-form-label {
 .has-success .checkbox-inline,
 .has-success .control-label,
 .has-success .text-muted,
+.has-success .help-block,
 .has-success .radio,
 .has-success .radio-inline,
 .has-success.checkbox label,
@@ -265,6 +319,7 @@ form .col-form-label {
 .has-error .checkbox-inline,
 .has-error .control-label,
 .has-error .text-muted,
+.has-error .help-block,
 .has-error .radio,
 .has-error .radio-inline,
 .has-error.checkbox label,
@@ -341,7 +396,7 @@ a {
   position: absolute;
   z-index: 0;
   bottom: 0;
-  height: 50px;
+  height: 30px;
   width: 100%;
   text-align: right;
   @include transition(.3s, padding-left, ease-in);
@@ -460,7 +515,7 @@ input.loading {
 
 #wrapper-tpl {
   padding-top: 51px;
-  margin-bottom: 51px;
+  margin-bottom: 50px;
 }
 
 .lofiversion #wrapper-tpl {
@@ -580,10 +635,6 @@ div.tagsinput {
   }
 }
 
-.badge > a {
-  color: #fff;
-}
-
 .navbar-right,
 .navbar-nav {
   i {
@@ -602,7 +653,7 @@ div.tagsinput {
   position: relative;
   .badge {
     position: absolute;
-    top: 9px;
+    top: 5px;
     right: 5px;
   }
 }
@@ -724,9 +775,23 @@ form .form-group {
 .card-header {
   padding: 0;
   position: relative;
-  h5 {
+  > h5 {
     margin: 0;
     padding: 7px 15px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    margin: 0;
   }
 }
 
@@ -1135,12 +1200,6 @@ a.desc:after {
   padding: 0;
 }
 
-.grid-view .summary {
-  text-align: left;
-  font-size: 12px;
-  margin: .50rem;
-}
-
 .o-hidden {
   overflow: hidden !important;
 }
@@ -1430,17 +1489,26 @@ a.desc:after {
 
 }
 
+#dropdown-notification {
+  min-width: 300px;
+}
+
 .navbar .navbar-right {
-  margin-right: 15px;
+  margin-right: 0;
   position: absolute;
   right: 15px;
+  @media (min-width: 768px) {
+    .navbar .navbar-right {
+      margin-right: 15px;
+    }
+  }
   > li {
     float: left;
     margin: 0;
     &:last-child {
       margin-right: 0;
     }
-    a {
+    > a {
       span {
         position: absolute;
         top: 5px;
@@ -1461,6 +1529,13 @@ table .alert {
 .tab-pane .alert,
 .card-body form .alert {
   margin: 15px;
+}
+
+.alert {
+  .progress {
+    height: .5rem;
+    margin-top: .5rem;
+  }
 }
 
 #wrapper {
@@ -1577,6 +1652,11 @@ table .alert {
   width: 250px;
 }
 
+h1,
+.h1 {
+  font-size: 30px;
+}
+
 @media (min-width: 768px) {
   .module-header .btn span {
     display: inline;
@@ -1597,11 +1677,6 @@ table .alert {
     width: 140px;
     padding-left: 40px;
     font-size: 19px;
-  }
-
-  h1,
-  .h1 {
-    font-size: 30px;
   }
 
   .footer {
@@ -2062,16 +2137,10 @@ table .alert {
   padding-left: 1rem;
 }
 
-
-
-
-
-
-
-
-
-
-
+$badge-color-light: #e0e6ea;
+.badge-light {
+  background-color: $badge-color-light;
+}
 
 
 

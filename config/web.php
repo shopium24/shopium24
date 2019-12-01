@@ -8,19 +8,14 @@ $config = [
     'id' => 'web',
     'homeUrl' => '/',
     'basePath' => dirname(__DIR__), //if in web dir
-    //'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'panix\engine\controllers',
     'defaultRoute' => 'main/index',
     'bootstrap' => [
         'plugins',
         'panix\engine\plugins\goaway\GoAway',
-        //'webcontrol'
     ],
     'controllerMap' => [
         'main' => 'panix\engine\controllers\WebController',
-    ],
-    'modules' => [
-
     ],
     'components' => [
         'plugins' => [
@@ -32,7 +27,7 @@ $config = [
             'shortcodesIgnoreBlocks' => [
                 '<pre[^>]*>' => '<\/pre>',
                 '<a[^>]*>' => '<\/a>',
-               // '<div class="content[^>]*>' => '<\/div>',
+                // '<div class="content[^>]*>' => '<\/div>',
             ]
         ],
         'fcm' => [
@@ -50,7 +45,6 @@ $config = [
             'renderers' => [
                 'tpl' => [
                     'class' => 'yii\smarty\ViewRenderer',
-                    //'cachePath' => '@runtime/Smarty/cache',
                 ],
             ],
             'theme' => [
@@ -104,7 +98,7 @@ if (YII_ENV_DEV) {
         return strtr('<a href="phpstorm://open?url={file}&line={line}">{file}:{line}</a>', ['{file}' => $filePath]);
     };
     $config['modules']['debug']['panels'] = [
-       // 'queue' => \yii\queue\debug\Panel::class,
+        // 'queue' => \yii\queue\debug\Panel::class,
     ];
     //$config['modules']['debug']['dataPath'] = '@runtime/debug';
     //$config['bootstrap'][] = 'gii';

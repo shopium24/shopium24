@@ -15,11 +15,6 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
         '@uploads' => '@app/web/uploads',
-        //'@uploads' => dirname(dirname(__DIR__)) . '/frontend/web/uploads',
-        //'@backend' => dirname(dirname(__DIR__)) . '/backend',
-        //'@frontend' => dirname(dirname(__DIR__)) . '/frontend',
-        //'@common' => dirname(dirname(__DIR__)) . '/common',
-        //'@console' => dirname(dirname(__DIR__)) . '/console',
     ],
     //'sourceLanguage'=>'ru',
     // 'runtimePath' => '@app/backend/runtime',
@@ -53,9 +48,11 @@ $config = [
         'user' => ['class' => 'shopium24\mod\user\Module'],
         'plans' => ['class' => 'shopium24\mod\plans\Module'],
         'sitemap' => ['class' => 'panix\mod\sitemap\Module'],
+        'pages' => ['class' => 'panix\mod\pages\Module'],
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
         'seo' => ['class' => 'panix\mod\seo\Module'],
         'forum' => ['class' => 'panix\mod\forum\Module'],
+        'hosting' => ['class' => 'app\modules\hosting\Module'],
     ],
     'components' => [
         'authManager' => [
@@ -149,21 +146,6 @@ $config = [
         ],
         'assetManager' => [
             'forceCopy' => YII_DEBUG,
-            // 'basePath'=>'@webroot/web/assets',
-            'bundles' => [
-                //'yii\jui\JuiAsset' => ['css' => []],
-                'yii\jui\JuiAsset' => [
-                    //'js' => [
-                    //'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js'
-                    //]
-                ],
-                /*'panix\lib\google\maps\MapAsset' => [
-                    'options' => [
-                        'key' => '...',
-                    ]
-                ]*/
-            ],
-            //'linkAssets' => true,
             'appendTimestamp' => true
         ],
         'plugins' => [
@@ -209,7 +191,7 @@ $config = [
         'cache' => [
             'directoryLevel' => 0,
             'keyPrefix' => '',
-            'class' => 'yii\caching\FileCache', //DummyCache
+            'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'class' => 'shopium24\mod\user\components\WebUser',

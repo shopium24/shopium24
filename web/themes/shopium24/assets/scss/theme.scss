@@ -322,15 +322,28 @@ h3 {
 
 @each $name, $color in $colors {
   .btn-#{$name} {
+    background-color: $color;
     &:hover,
     &:focus,
     &:active {
       @extend .box-shadow-none;
     }
   }
-
+  .btn-outline-#{$name} {
+    border-color: $color;
+    &:hover,
+    &:focus,
+    &:active {
+      @extend .box-shadow-none;
+    }
+  }
   .btn-#{$name}:not(:disabled):not(.disabled):active:focus,
   .show > .btn-#{$name}.dropdown-toggle:focus {
+    @extend .box-shadow-none;
+  }
+  .btn-#{$name}:not(:disabled):not(.disabled):active,
+  .btn-#{$name}:not(:disabled):not(.disabled).active,
+  .show > .btn-#{$name}.dropdown-toggle{
     @extend .box-shadow-none;
   }
 }
@@ -372,6 +385,11 @@ h3 {
 .alert {
   position: relative;
   padding-left: 3rem;
+  border-width: 5px;
+  border-top:0;
+  border-bottom: 0;
+  border-right: 0;
+
   &:before {
     font-family: $font-family-icon;
     position: absolute;
@@ -383,10 +401,12 @@ h3 {
 
 @each $name, $color, $icon in $alerts {
   .alert-#{$name} {
-    background-color: lighten($color, 30%);
-    border-color: lighten($color, 20%);
-    &:before {
+    background-color: lighten($color, 50%);
+   // background-color: transparent;
 
+    border-color: $color;
+    color: $color;
+    &:before {
       content: unquote("\"#{$icon}\"");
     }
   }

@@ -2,59 +2,67 @@ var xhr_notify;
 $(function () {
 
     setInterval(function () {
-            reloadCounters();
+        reloadCounters();
     }, 10000); //10000
 
     function reloadCounters() {
-        var notifaction_list = [];
-        console.log(notifaction_list.length);
+        var notification_list, sound_list = [];
 
-        if(xhr_notify !== undefined)
+        // console.log(notification_list.length);
+
+        if (xhr_notify !== undefined)
             xhr_notify.abort();
-        //   if (notifaction_list.length === 0) {
-        xhr_notify = $.getJSON('/admin/app/default/ajax-counters', function (data) { //'/admin/default/ajax-counters?' + Math.random()
-            $.each(data.count, function (i, c) {
 
-                if (c > 0) {
-                    $('.counter-cart').html(c).show();
+        xhr_notify = $.getJSON('/admin/app/default/ajax-counters', function (data) {
+
+
+
+            $('#dropdown-notification').html(data.content);
+
+            $.each(data.count, function (index, value) {
+                if (value > 0) {
+                    $('.navbar-badge-' + index).html(value).show();
                 } else {
-                    $('.circle-orders .label').hide();
+                    $('.navbar-badge-' + index).html(value).hide();
                 }
             });
-            //console.log(Object.keys(data.notify));
-            $.each(data.notify, function (id, notification) {
-
-                notifaction_list[id] = $.notify({message: notification.text}, {
-                    type: notification.type,
-                    showProgressbar: true,
-                    allow_duplicates: false,
-                    timer: 1000,
-                    //allow_dismiss: false,
-                    animate: {
-                        enter: 'animated fadeInDown',
-                        exit: 'animated fadeOutUp'
-                    },
-                    placement: {
-                        from: "bottom",
-                        align: "left"
-                    },
-                    onShow: function () {
-                        $.playSound('http://' + window.location.hostname + '/uploads/notification.mp3');
-                    },
-                    onClose: function (s) {
-                        console.log(s);
-                            $.getJSON('/admin/app/default/ajax-read-notification', {id: id}, function (data) {
-
+            if (data.notify) {
+                $.each(data.notify, function (id, notification) {
+                    var sound = notification.sound;
+                    if (notification.status === 0) {
+                        var notify = $.notify({message: notification.text}, {
+                            type: notification.type,
+                            showProgressbar: true,
+                            allow_duplicates: false,
+                            timer: 6000, // 1 min
+                            allow_dismiss: false,
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            placement: {
+                                from: "bottom",
+                                align: "left"
+                            },
+                            onShow: function () {
+                                $.playSound('http://' + window.location.hostname + ((sound) ? sound : '/uploads/notification.mp3'));
+                                $.getJSON('/admin/app/default/ajax-notification-status', {
+                                    id: id,
+                                    status: 2
+                                }, function (data) {
+                                   // delete notification_list[id];
+                                   // notify.close();
+                                });
+                            },
+                            onClose: function () {
+                                $.stopSound();
+                               // delete notification_list[id];
+                            }
                         });
-                        $.stopSound();
-                        // delete notifaction_list[notifaction.id];
-                        //notifaction_list.splice(notifaction, []);
                     }
                 });
-
-            });
+            }
         });
-        //}
     }
 
 });

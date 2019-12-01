@@ -1,6 +1,6 @@
 sass --watch dark.scss:dark.css --style expanded
 
-cd frontend/web/themes/shopium24/assets
+cd web/themes/shopium24/assets
 sass --watch scss:css --style expanded
 
 
