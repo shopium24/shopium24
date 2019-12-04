@@ -1,14 +1,19 @@
-<?php if(Yii::app()->user->isSuperuser){ ?>
+<?php
+use panix\engine\widgets\Pjax;
 
-<div class="col-xs-12">
-<h1><?= $model->isString('title'); ?></h1>
-<?= $model->isArea('full_text'); ?>
+Pjax::begin([
+    'id' => 'pages-view'
+]);
+?>
+<h1><?= $model->isString('name'); ?></h1>
+
+
+<div class="mce-content-body">
+    <?= $model->renderText(); ?>
 </div>
-<?php }else{ ?>
 
-<?=Yii::app()->tpl->alert('info',Yii::t('error','401')); ?>
+
+<?php Pjax::end(); ?>
+<?php if(Yii::$app->hasModule('comments')) {?>
+    <?= panix\mod\comments\widgets\comment\CommentWidget::widget(['model' => $model]); ?>
 <?php } ?>
-
-
-
-
