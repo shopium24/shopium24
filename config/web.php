@@ -7,17 +7,22 @@ Yii::setAlias('@console', dirname(__DIR__) . '/../console/web');
 $config = [
     'id' => 'web',
     'homeUrl' => '/',
-    'basePath' => dirname(__DIR__), //if in web dir
+    'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'panix\engine\controllers',
     'defaultRoute' => 'main/index',
     'bootstrap' => [
         'plugins',
         'panix\engine\plugins\goaway\GoAway',
+        'panix\engine\widgets\webcontrol\WebInlineControl',
     ],
     'controllerMap' => [
         'main' => 'panix\engine\controllers\WebController',
     ],
     'components' => [
+        'consoleRunner' => [
+            'class' => 'panix\engine\components\ConsoleRunner',
+            'file' => '@my/path/to/yii' // or an absolute path to console file
+        ],
         'plugins' => [
             'class' => 'panix\mod\plugins\components\PluginsManager',
             'appId' => panix\mod\plugins\BasePlugin::APP_WEB,

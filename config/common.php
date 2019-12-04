@@ -16,14 +16,10 @@ $config = [
         '@npm' => '@vendor/npm-asset',
         '@uploads' => '@app/web/uploads',
     ],
-    //'sourceLanguage'=>'ru',
-    // 'runtimePath' => '@app/backend/runtime',
     'controllerNamespace' => 'panix\engine\controllers',
-    //'defaultRoute' => 'main/main',
     'bootstrap' => [
         'log',
         'maintenanceMode',
-        'panix\engine\widgets\webcontrol\WebInlineControl',
         'panix\engine\BootstrapModule'
     ],
     'controllerMap' => [
@@ -129,10 +125,7 @@ $config = [
             'sortByPriority' => true, // default is false
         ],
         'curl' => ['class' => 'panix\engine\Curl'],
-        'consoleRunner' => [
-            'class' => 'panix\engine\components\ConsoleRunner',
-            'file' => '@my/path/to/yii' // or an absolute path to console file
-        ],
+
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         'formatter' => ['class' => 'panix\engine\i18n\Formatter'],
         'maintenanceMode' => [
@@ -181,13 +174,7 @@ $config = [
             //'class' => '\yii\web\DbSession',
             //'writeCallback'=>['panix\engine\web\DbSession', 'writeFields']
         ],
-        'request' => [
-            'class' => 'panix\engine\WebRequest',
-            //'baseUrl' => '/admin',
-            //'csrfParam' => '_csrf-backend',
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'fpsiKaSs1Mcb6zwlsUZwuhqScBs5UgPQ',
-        ],
+
         'cache' => [
             'directoryLevel' => 0,
             'keyPrefix' => '',
@@ -282,7 +269,6 @@ $config = [
         ],
         'languageManager' => ['class' => 'panix\engine\ManagerLanguage'],
         'settings' => ['class' => 'panix\engine\components\Settings'],
-
         'urlManager' => require(__DIR__ . '/urlManager.php'),
         'db' => require($db),
     ],
