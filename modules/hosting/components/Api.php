@@ -49,12 +49,6 @@ class Api
             ->setMethod('POST')
             ->addHeaders(['content-type' => "application/json; charset=" . Yii::$app->charset])
             ->setUrl('https://adm.tools/api.php')
-           /* ->setData(Json::encode(ArrayHelper::merge([
-                'auth_login' => $api_config->auth_login,
-                'auth_token' => $api_config->auth_token,
-                'class' => $class,
-                'method' => $method,
-            ], $config)))*/
             ->setData(ArrayHelper::merge([
                 'auth_login' => $api_config->auth_login,
                 'auth_token' => $api_config->auth_token,
@@ -67,6 +61,11 @@ class Api
 
         if ($response->isOk) {
             $this->response = $response->data;
+           // print_r($this->response);die;
+            if ($this->response['status'] == 'success') {
+                Yii::$app->log->traceLevel = 0;
+                Yii::info("Success {$class}::{$method}",'Hosting/Api');
+            }
         }
        // VarDumper::dump($this->response,10,true);die;
 
