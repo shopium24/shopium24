@@ -42,6 +42,9 @@ use panix\engine\CMS;
                             <?php if($host['name'] != 'www'){ ?>
                                 <?= Html::a(Html::icon('delete'), ['delete', 'host' => $host['name'].'.'.$data['name']], ['class' => 'btn btn-sm btn-outline-danger']); ?>
                             <?php } ?>
+                            <?php if($host['name'] != 'www'){ ?>
+                                <?= Html::a(Html::icon('edit'), ['host-edit', 'host' => $host['name'].'.'.$data['name']], ['class' => 'btn btn-sm btn-outline-danger']); ?>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php } ?>

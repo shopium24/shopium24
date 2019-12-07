@@ -81,7 +81,7 @@ class SiteController extends CommonController
             $params['site'] = $model->site;
 
 
-            $api = new Api('hosting_site_config_ws', 'edit', $params);
+                $api = new Api('hosting_site_config_ws', 'edit', $params);
 
             if ($api->response['status'] == 'success') {
                 $response = $api->response['data'];
