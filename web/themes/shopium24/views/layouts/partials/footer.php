@@ -3,10 +3,10 @@
         <div class="row wow animated fadeIn">
             <div class="col-lg-4">
                 <?=
-                Yii::t('app', 'COPYRIGHT', array(
+                Yii::t('app', 'COPYRIGHT', [
                     'year' => date('Y'),
-                    'site_name' => Yii::$app->settings->get('app', 'site_name')
-                ))
+                    'by' => Yii::$app->settings->get('app', 'sitename')
+                ])
                 ?>
                 <br/><br/>
                 <div class="made-in-ukraine">
@@ -18,15 +18,15 @@
             </div>
             <div class="col-lg-4">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="/html/plans">Цены</a></li>
-                    <li class="list-group-item"><a href="/html/domain">Домены</a></li>
+                    <li class="list-group-item"><a href="/page/plans">Цены</a></li>
+                    <li class="list-group-item"><a href="/page/domain">Домены</a></li>
                     <li class="list-group-item"><a href="/page/terms">Условия использования</a></li>
                 </ul>
             </div>
             <div class="col-lg-4">
                 <ul class="list-group">
                     <li class="list-group-item"><i class="icon-phone text-md"></i> <span class="text-md">+38 063 390 71 36</span></li>
-                    <li class="list-group-item"><i class="icon-envelope text-md"></i> <span class="text-md">support@<?= Yii::$app->params['domain']; ?></span></li>
+                    <li class="list-group-item"><i class="icon-envelope text-md"></i> <span class="text-md"><? \panix\engine\Html::mailto('support@'.Yii::$app->params['domain']); ?></span></li>
 
                 </ul>
 
