@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 date_default_timezone_set("UTC");
 
 // comment out the following two lines when deployed to production
-if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+if (in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1','178.212.194.135'])) {
     $env = 'dev';
     $debug = true;
 } else {
