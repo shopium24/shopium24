@@ -7,16 +7,16 @@ Yii::setAlias('@console', dirname(__DIR__) . '/../console/web');
 $config = [
     'id' => 'web',
     'homeUrl' => '/',
-    'basePath' => dirname(__DIR__),
+   // 'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'panix\engine\controllers',
-    'defaultRoute' => 'main/index',
+    'defaultRoute' => 'site/index',
     'bootstrap' => [
         'plugins',
         'panix\engine\plugins\goaway\GoAway',
         'panix\engine\widgets\webcontrol\WebInlineControl',
     ],
     'controllerMap' => [
-        'main' => 'panix\engine\controllers\WebController',
+        'site' => 'panix\engine\controllers\WebController',
     ],
     'components' => [
         'consoleRunner' => [
@@ -43,7 +43,7 @@ $config = [
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         //'webcontrol' => ['class' => 'panix\engine\widgets\webcontrol\WebInlineControl'],
         'view' => [
-            'class' => 'panix\mod\plugins\components\View',
+            'class' => 'app\engine\View',
             'as Layout' => [
                 'class' => 'panix\engine\behaviors\LayoutBehavior',
             ],
@@ -67,7 +67,7 @@ $config = [
         'errorHandler' => [
             //'class'=>'panix\engine\base\ErrorHandler'
             //'errorAction' => 'site/error',
-            'errorAction' => 'main/error',
+            'errorAction' => 'site/error',
             // 'errorView' => '@webroot/themes/basic/views/layouts/error.php'
         ],
 

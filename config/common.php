@@ -8,7 +8,7 @@ $logDate = $date->format('Y-m-d');
 $db = YII_DEBUG ? dirname(__DIR__) . '/config/db_local.php' : dirname(__DIR__) . '/config/db.php';
 $config = [
     'id' => 'common',
-    'name' => 'PIXELION CMS',
+    'name' => 'Shopium24',
     'basePath' => dirname(__DIR__) . '/../',
     'language' => 'ru',
     'aliases' => [
@@ -189,84 +189,7 @@ $config = [
             'htmlLayout' => 'layouts/html'
             //  'class' => 'yii\swiftmailer\Mailer',
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'flushInterval' => 1000 * 10,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                    'categories' => ['yii\db\*','panix\engine\db\*'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/db_error.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/error.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['warning'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/warning.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/info.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'categories' => ['panix\engine\db\*'],
-                    'levels' => ['info', 'trace'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/trace_core_db.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['profile'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/profile.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['trace'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . date('Y-m-d') . '/trace.log',
-                ],
-                [
-                    'class' => 'panix\engine\log\EmailTarget',
-                    'levels' => ['error', 'warning'],
-                    'enabled' => false,//YII_DEBUG,
-                    'categories' => ['yii\base\*'],
-                    'except' => [
-                        'yii\web\HttpException:404',
-                        'yii\web\HttpException:403',
-                        'yii\web\HttpException:400',
-                        'yii\i18n\PhpMessageSource::loadMessages'
-                    ],
-                    /*'message' => [
-                        'from' => ['log@pixelion.com.ua'],
-                        'to' => ['dev@pixelion.com.ua'],
-                        'subject' => 'Ошибки базы данных на сайте app',
-                    ],*/
-                ],
-                [
-                    'class' => 'yii\log\DbTarget',
-                    'levels' => ['error', 'warning'],
-                    'logTable' => '{{%log_error}}',
-                    'except' => [
-                        'yii\web\HttpException:404',
-                        'yii\web\HttpException:403',
-                        'yii\web\HttpException:400',
-                        'yii\i18n\PhpMessageSource::loadMessages'
-                    ],
-                ],
-            ],
-        ],
+        'log' => ['class'=>'panix\engine\log\Dispatcher'],
         'languageManager' => ['class' => 'panix\engine\ManagerLanguage'],
         'settings' => ['class' => 'panix\engine\components\Settings'],
         'urlManager' => require(__DIR__ . '/urlManager.php'),
@@ -286,14 +209,6 @@ $config = [
     ],*/
     'params' => require(__DIR__ . '/params.php'),
 ];
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['modules']['debug']['class'] = 'yii\debug\Module';
-    $config['modules']['debug']['traceLine'] = function ($options, $panel) {
-        $filePath = $options['file'];
-        return strtr('<a href="phpstorm://open?url={file}&line={line}">{file}:{line}</a>', ['{file}' => $filePath]);
-    };
-    //$config['modules']['debug']['dataPath'] = '@common/runtime/debug';
-}
+
 
 return $config;

@@ -17,9 +17,19 @@ return [
         'action' => UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
     ],
     'rules' => [
-        '' => 'main/index',
-        'placeholder' => 'main/placeholder',
-
+        '' => 'site/index',
+        'placeholder' => 'site/placeholder',
+        'captcha' => 'site/captcha',
+        [
+            'pattern' => 'favicon',
+            'route' => 'site/favicon',
+            'suffix' => '.ico'
+        ],
+        [
+            'pattern' => 'favicon-<size:\d+>',
+            'route' => 'site/favicon',
+            'suffix' => '.png'
+        ],
         //'/admin' => 'admin/admin/default/index',
        // 'admin/auth' => 'admin/auth/index',
         ['pattern' => 'like/<type:(up|down)>/<id:\d+>', 'route' => 'main/like'],
