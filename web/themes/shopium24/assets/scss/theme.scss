@@ -80,7 +80,7 @@ blockquote {
   margin-left: 10px;
   position: relative;
   font-size: 13px;
-  &:before{
+  &:before {
     font-family: $font-family-icon;
     content: "\f026";
     position: absolute;
@@ -90,8 +90,6 @@ blockquote {
     font-size: 13px;
   }
 }
-
-
 
 p {
   line-height: 28px;
@@ -112,12 +110,31 @@ h3 {
 }
 
 .made-in-ukraine {
-  background: url(../images/madeinukraine.gif) no-repeat 0 center;
-  height: 65px;
-  width: 100px;
   padding-left: 30px;
   text-transform: uppercase;
   font-size: 15px;
+  position: relative;
+  height: 50px;
+  line-height: 25px;
+}
+
+.made-in-ukraine:after,
+.made-in-ukraine:before {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 0;
+  content: '';
+}
+
+.made-in-ukraine:after {
+  background: yellow;
+  bottom: 0;
+}
+
+.made-in-ukraine:before {
+  background: blue;
+  top: 0;
 }
 
 .block-padding {
@@ -297,7 +314,7 @@ h3 {
 
 .header-contacts {
   color: #292d32;
-  a{
+  a {
     color: #292d32;
     &:hover {
       text-decoration: none;
@@ -342,7 +359,7 @@ h3 {
   }
   .btn-#{$name}:not(:disabled):not(.disabled):active,
   .btn-#{$name}:not(:disabled):not(.disabled).active,
-  .show > .btn-#{$name}.dropdown-toggle{
+  .show > .btn-#{$name}.dropdown-toggle {
     @extend .box-shadow-none;
   }
 }
@@ -385,7 +402,7 @@ h3 {
   position: relative;
   padding-left: 3rem;
   border-width: 5px;
-  border-top:0;
+  border-top: 0;
   border-bottom: 0;
   border-right: 0;
 
@@ -401,7 +418,7 @@ h3 {
 @each $name, $color, $icon in $alerts {
   .alert-#{$name} {
     background-color: lighten($color, 50%);
-   // background-color: transparent;
+    // background-color: transparent;
 
     border-color: $color;
     color: $color;
@@ -411,13 +428,14 @@ h3 {
   }
 }
 
-.mce-content-body{
-  ul{
-    li{
+.mce-content-body {
+  ul {
+    li {
       margin-bottom: 1rem;
     }
   }
 }
+
 .progress {
   border: 1px solid rgba(0, 0, 0, .075);
 

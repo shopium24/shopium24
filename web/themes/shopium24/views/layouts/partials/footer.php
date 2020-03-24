@@ -1,3 +1,6 @@
+<?php
+use panix\engine\Html;
+?>
 <footer class="footer">
     <div class="container">
         <div class="row wow animated fadeIn">
@@ -10,17 +13,16 @@
                 ?>
                 <br/><br/>
                 <div class="made-in-ukraine">
-                    Made<br/>
-                    In<br/>
+                    Made In<br/>
                     Ukraine
                 </div>
                 {copyright}
             </div>
             <div class="col-lg-4">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="/page/plans">Цены</a></li>
-                    <li class="list-group-item"><a href="/page/domain">Домены</a></li>
-                    <li class="list-group-item"><a href="/page/terms">Условия использования</a></li>
+                    <li class="list-group-item"><?= Html::a('Цены',['/page/plans']); ?></li>
+                    <li class="list-group-item"><?= Html::a('Домены',['/page/domain']); ?></li>
+                    <li class="list-group-item"><?= Html::a('Условия использования',['/page/terms']); ?></li>
                 </ul>
             </div>
             <div class="col-lg-4">
